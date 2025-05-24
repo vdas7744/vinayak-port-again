@@ -1,0 +1,847 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vinayak Das</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 20px 40px;
+            border-radius: 0 0 0 20px;
+            transition: all 0.3s ease;
+        }
+
+        .navbar.scrolled {
+            background: transparent;
+            padding: 15px 40px;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: #ff6b6b;
+            transform: translateY(-2px);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section with Video Background */
+        .hero {
+            height: 100vh;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .video-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -2;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.4));
+            z-index: -1;
+        }
+
+        .hero-content {
+            text-align: center;
+            color: white;
+            z-index: 1;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .hero-subtitle {
+            font-size: 2rem;
+            font-weight: 300;
+            margin-bottom: 20px;
+            opacity: 0.9;
+            animation: fadeInUp 1s ease-out 0.2s both;
+        }
+
+        .hero-title {
+            font-size: 5rem;
+            font-weight: 700;
+            margin-bottom: 30px;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1);
+            background-size: 200% 200%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradientShift 3s ease-in-out infinite, fadeInUp 1s ease-out 0.4s both;
+        }
+
+        .hero-description {
+            font-size: 1.2rem;
+            max-width: 1000px;
+            margin: 0 auto;
+            opacity: 0.9;
+            animation: fadeInUp 1s ease-out 0.6s both;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes gradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        /* Section Styles */
+        section {
+            padding: 100px 0;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 50px;
+        }
+
+        .section-title {
+            font-size: 3rem;
+            margin-bottom: 50px;
+            text-align: center;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            border-radius: 2px;
+        }
+
+        /* Experience Section */
+        #resume {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            color: #333;
+            padding: 100px 0;
+        }
+
+        .company-logos {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 60px;
+            flex-wrap: wrap;
+        }
+
+        .company-logo {
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50px;
+            transition: transform 0.3s ease;
+            font-weight: bold;
+            color: white;
+            font-size: 24px;
+        }
+
+        .company-logo:hover {
+            transform: scale(1.1);
+        }
+        .company-logo img {
+            width: 60px;
+            height:60px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid black;
+        }
+
+        .company-logo.genie { background: #4285f4; }
+        .company-logo.hero { background: #333; }
+        .company-logo.agrostar { background: #000; }
+        .company-logo.isro { background: #1e40af; }
+
+        .timeline {
+            position: relative;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: linear-gradient(to bottom, #4285f4, #1e40af, #005288);
+            transform: translateX(-50%);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 60px;
+            width: 45%;
+        }
+
+        .timeline-item:nth-child(odd) {
+            left: 0;
+            text-align: right;
+        }
+
+        .timeline-item:nth-child(even) {
+            left: 55%;
+            text-align: left;
+        }
+
+        .timeline-dot {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            top: 20px;
+            z-index: 2;
+        }
+
+        .timeline-item:nth-child(odd) .timeline-dot {
+            right: -56px;
+        }
+
+        .timeline-item:nth-child(even) .timeline-dot {
+            left: -56px;
+        }
+
+        .timeline-dot.genie { background: #4285f4; }
+        .timeline-dot.hero { background: #333; }
+        .timeline-dot.agrostar { background: #005288; }
+        .timeline-dot.isro { background: #1e40af; }
+
+        .timeline-content {
+            background: white;
+            padding: 0;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .timeline-content:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .timeline-header {
+            padding: 20px 25px 15px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .timeline-date {
+            color: #9CA3AF;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .timeline-location {
+            color: #6B7280;
+            font-size: 0.85rem;
+        }
+
+        .timeline-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #333;
+            margin: 8px 0 5px;
+        }
+
+        .timeline-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .timeline-description {
+            padding: 20px 25px;
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .read-more {
+            color: #4285f4;
+            font-weight: 500;
+            cursor: pointer;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .read-more:hover {
+            color: #1e40af;
+        }
+
+        /* Resume Link Section */
+        .resume-link-section {
+            text-align: center;
+            margin-top: 60px;
+            padding: 40px;
+            background: rgba(66, 133, 244, 0.1);
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+        }
+
+        .resume-download-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: linear-gradient(45deg, #4285f4, #1e40af);
+            color: white;
+            padding: 15px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(66, 133, 244, 0.3);
+        }
+
+        .resume-download-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(66, 133, 244, 0.4);
+        }
+
+        /* Projects Section */
+        #projects {
+            position: relative;
+            background: #f8f9fa;
+            overflow: hidden;
+        }
+
+        .projects-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background-image: url('https://images.unsplash.com/photo-1581092160562-40aa08e78837?w=1920&h=1080&fit=crop');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+
+        #projects .container {
+            position: relative;
+            z-index: 2;
+        }
+
+        #projects .section-title {
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+            margin-top: 50px;
+        }
+
+
+        .project-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
+        }
+
+        .project-image {
+            height: 200px;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+
+        .project-content {
+            padding: 30px;
+        }
+
+        .project-content h3 {
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            color: #333;
+        }
+
+        /* Contact Section */
+        #contact {
+            background: linear-gradient(135deg,  #333);
+            color: white;
+        }
+
+        .contact-content {
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 50px;
+            margin-top: 40px;
+            flex-wrap: wrap;
+        }
+
+        .contact-item {
+            background: #333;
+            padding: 20px;
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
+            border: transparent;
+            transition: transform 0.3s ease;
+        }
+
+        .contact-item:hover {
+            transform: translateY(-5px);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 15px 20px;
+            }
+
+            .nav-links {
+                gap: 15px;
+            }
+
+            .nav-links a {
+                font-size: 14px;
+            }
+
+            .hero-title {
+                font-size: 8rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1rem;
+            }
+
+            .section-title {
+                font-size: 2.5rem;
+            }
+
+            .container {
+                padding: 0 20px;
+            }
+
+            .contact-info {
+                flex-direction: column;
+                align-items: center;
+                gap: 20px;
+            }
+
+            .timeline-item {
+                width: 100%;
+                left: 0 !important;
+                text-align: left !important;
+                margin-bottom: 40px;
+            }
+
+            .timeline::before {
+                left: 30px;
+            }
+
+            .timeline-dot {
+                left: 21px !important;
+            }
+
+            .timeline-content {
+                margin-left: 60px;
+            }
+
+            .company-logos {
+                gap: 15px;
+            }
+
+            .company-logo {
+                width: 50px;
+                height: 50px;
+                font-size: 20px;
+            }
+        }
+
+        /* Scroll indicator */
+        .scroll-indicator {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.2);
+            z-index: 1001;
+        }
+
+        .scroll-progress {
+            height: 100%;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            width: 0%;
+            transition: width 0.1s ease;
+        }
+    </style>
+</head>
+<body>
+    <!-- Scroll Progress Indicator -->
+    <div class="scroll-indicator">
+        <div class="scroll-progress" id="scrollProgress"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#resume">Resume</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Projects Background -->
+    <div class="projects-background" id="projectsBackground"></div>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <video class="video-background" autoplay muted loop>
+            <source src="./images/background.mp4" type="video/mp4">
+            <!-- Fallback for browsers that don't support video -->
+        </video>
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <p class="hero-subtitle">Mechanical Engineer</p>
+            <h1 class="hero-title">Vinayak Das</h1>
+            <p class="hero-description">
+                Creative mechanical engineer driven by a passion for design, precision, and practical innovation. Focused on developing efficient, scalable, and forward-thinking engineering solutions.
+            </p>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="resume">
+        <div class="container">
+            <h2 class="section-title">EXPERIENCE</h2>
+            
+            <!-- Company Logos -->
+            <div class="company-logos">
+                <div class="company-logo genie">
+                    <img src="./images/genie.jpeg" alt="Company logo"></img>
+                </div>
+                <div class="company-logo hero">
+                    <img src="./images/hero.jpeg" alt="Company logo"></img>
+                </div>
+                <div class="company-logo agrostar">
+                    <img src="./images/agrostar.jpeg" alt="Company logo"></img>
+                </div>
+                <div class="company-logo isro">
+                    <img src="./images/isro.jpeg" alt="Company logo"></img>
+                </div>
+            </div>
+
+            <!-- Timeline -->
+            <div class="timeline">
+                <!-- genie Experience -->
+                <div class="timeline-item">
+                    <div class="timeline-dot genie"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-header">
+                            <div class="timeline-date">June 2024 - December 2024</div>
+                            <div class="timeline-location">Redmond, WA</div>
+                            <h3 class="timeline-title">Design Engineer Co-op</h3>
+                        </div>
+                        <img src="./images/genie.jpeg" class="timeline-image">
+                        <div class="timeline-description">
+                            add your description
+                            <br><a href="./all-companies-info/genie.html" class="read-more">Read More</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- hero Experience -->
+                <div class="timeline-item">
+                    <div class="timeline-dot hero"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-header">
+                            <div class="timeline-date">August 2020 - June 2023</div>
+                            <div class="timeline-location">Rajasthan, India</div>
+                            <h3 class="timeline-title">Design and Development Engineer</h3>
+                        </div>
+                        <img src="./images/hero.jpeg" alt="company logo" class="timeline-image">
+                        <div class="timeline-description">
+                            description
+                            <br><a href="./all-companies-info/hero.html" class="read-more">Read More</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- AgroStar Experience -->
+                <div class="timeline-item">
+                    <div class="timeline-dot agrostar"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-header">
+                            <div class="timeline-date">January 2020 - June 2020</div>
+                            <div class="timeline-location">Pune, India</div>
+                            <h3 class="timeline-title">Intern</h3>
+                        </div>
+                        <img src="./images/agrostar.jpeg" alt="agrostar img" class="timeline-image">
+                        <div class="timeline-description">
+                            description.
+                            <br><a href="./all-companies-info/agrostar.html" class="read-more">Read More</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ISRO Experience -->
+                <div class="timeline-item">
+                    <div class="timeline-dot isro"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-header">
+                            <div class="timeline-date">May 2018 - June 2018</div>
+                            <div class="timeline-location">Trivandrum, India</div>
+                            <h3 class="timeline-title">Intern</h3>
+                        </div>
+                        <img src="./images/isro.jpeg" alt="isro logo" class="timeline-image">
+                        <div class="timeline-description">
+                            Analyzed and optimized the performance of a vibratory gyroscope, reducing error to 0.07% through algorithm development
+                            <br><a href="./all-companies-info/isro.html" class="read-more">Read More</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Resume Download Section -->
+            <div class="resume-link-section">
+                <h3 style="margin-bottom: 20px; color: #333;">Want to see more?</h3>
+                <a href="./images/resume.pdf" class="resume-download-btn">
+                    📄 View Full Resume
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education Section -->
+    <section id="education">
+        <div class="projects-overlay"></div>
+        <div class="container">
+            <h2 class="section-title">EDUCATION</h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    
+                    <div class="project-image">
+                        <img src="./images/uw.jpeg" alt="University of Washington" style="width: 100%; height: 100%; object-fit: cover;">
+                    </div>
+                    <div class="project-content">
+                        <h3>University of Washington</h3>
+                        <p>MS in Mechanical Engineering</p>
+                        <a href="./education/uw.html" class="read-more" style="text-decoration: none;">Read more</a>
+                    </div>
+                </div>
+    
+                <div class="project-card">
+                    <div class="project-image">
+                        <img src="./images/bits.jpeg" alt="NIT Trichy" style="width: 100%; height: 100%; object-fit: cover;">
+                    </div>
+                    <div class="project-content">
+                        <h3>Birla Institute of Technology and Science, Pilani</h3>
+                        <p>BE Mechanical Engineering</p>
+                        <a href="./education/bits.html" class="read-more" style="text-decoration: none;">Read more</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <div class="container">
+            <div class="contact-content">
+                <h2 class="section-title">Contact</h2>
+                <p>Ready to connect?</p>
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <h3>Email</h3>
+                        <p>vinayakda1@gmail.com</p>
+                    </div>
+                    <div class="contact-item">
+                        <h3>Phone</h3>
+                        <p>+1 (206) 730-8334</p>
+                    </div>
+                    <div class="contact-item">
+                        <h3>LinkedIn</h3>
+                        <p>https://www.linkedin.com/in/vinayak-das/</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Navbar scroll effect and parallax background
+        window.addEventListener('scroll', () => {
+            const navbar = document.getElementById('navbar');
+            const scrollProgress = document.getElementById('scrollProgress');
+            const projectsBackground = document.getElementById('projectsBackground');
+            const projectsSection = document.getElementById('projects');
+            
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+
+            // Update scroll progress
+            const scrolled = (window.pageYOffset / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
+            scrollProgress.style.width = scrolled + '%';
+
+            // Parallax effect for projects background
+            const projectsRect = projectsSection.getBoundingClientRect();
+            const windowHeight = window.innerHeight;
+            
+            // Show background when projects section is in viewport
+            if (projectsRect.top < windowHeight && projectsRect.bottom > 0) {
+                projectsBackground.style.opacity = '1';
+                // Create parallax effect
+                const scrollOffset = window.pageYOffset;
+                const parallaxSpeed = 0.5;
+                projectsBackground.style.transform = `translateY(${scrollOffset * parallaxSpeed}px)`;
+            } else {
+                projectsBackground.style.opacity = '0';
+            }
+        });
+
+        // Smooth scroll for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all project cards and timeline items
+        document.querySelectorAll('.project-card, .timeline-item').forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(30px)';
+            card.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+            observer.observe(card);
+        });
+
+        // Open resume in new tab/window
+        function openResume() {
+            // Replace 'resume.pdf' with the actual path to Thanh's resume PDF
+            window.open('resume.pdf', '_blank');
+        }
+    </script>
+</body>
+</html>
