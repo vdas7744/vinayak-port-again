@@ -552,6 +552,47 @@
             }
         }
 
+        /*skills section */
+        #skills {
+            background: linear-gradient(135deg, #0a0a0f 0%, #1a1a2e 100%);
+            color: white;
+            padding: 100px 0;
+            text-align: center;
+        }
+        
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 30px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        .skill-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 20px;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            backdrop-filter: blur(10px);
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        
+        .skill-card.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .skill-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 20px rgba(255, 255, 255, 0.1);
+        }
+
+
         /* Scroll indicator */
         .scroll-indicator {
             position: fixed;
@@ -571,6 +612,23 @@
         }
     </style>
 </head>
+    <!-- Skills Section -->
+<section id="skills">
+    <div class="container">
+        <h2 class="section-title">Skills</h2>
+        <div class="skills-grid">
+            <div class="skill-card">SolidWorks</div>
+            <div class="skill-card">Ansys</div>
+            <div class="skill-card">CATIA V5</div>
+            <div class="skill-card">GD&T</div>
+            <div class="skill-card">Python</div>
+            <div class="skill-card">MATLAB</div>
+            <div class="skill-card">FEA</div>
+            <div class="skill-card">DFM / DFA</div>
+        </div>
+    </div>
+</section>
+
 <body>
     <!-- Scroll Progress Indicator -->
     <div class="scroll-indicator">
@@ -830,7 +888,7 @@
         }, observerOptions);
 
         // Observe all project cards and timeline items
-        document.querySelectorAll('.project-card, .timeline-item').forEach(card => {
+        document.querySelectorAll('.project-card, .timeline-item, .skill-card').forEach(card => {
             card.style.opacity = '0';
             card.style.transform = 'translateY(30px)';
             card.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
