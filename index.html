@@ -554,73 +554,70 @@
 
         /*skills section */
         #skills {
-            position: relative;
-            color: white;
-            padding: 60px 0;
-            text-align: center;
-            overflow: hidden;
-            background: #0a0a0f;
-        }
-        
-        .skills-video-container {
-            position: absolute;
-            top: 0;
-            left: 0;
-            height: 100%;
-            width: 100%;
-            z-index: -2;
-            overflow: hidden;
-        }
-        
-        .skills-bg-video {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            opacity: 0.25;
-            filter: blur(2px);
-        }
-        
-        .skills-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            height: 100%;
-            width: 100%;
-            background: rgba(10, 10, 15, 0.7);
-            z-index: -1;
-        }
-        
-        .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-            gap: 25px;
-            max-width: 900px;
-            margin: 40px auto 0;
-        }
-        
-        .skill-card {
-            background: rgba(255, 255, 255, 0.06);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 12px;
-            padding: 14px 18px;
-            font-weight: 600;
-            font-size: 0.95rem;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            backdrop-filter: blur(8px);
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.8s ease, transform 0.8s ease;
-        }
-        
-        .skill-card.show {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        
-        .skill-card:hover {
-            transform: scale(1.05);
-            box-shadow: 0 10px 20px rgba(255, 255, 255, 0.1);
-        }
+                background: linear-gradient(135deg, #0a0a0f 0%, #1a1a2e 100%);
+                color: white;
+                padding: 80px 0;
+                text-align: center;
+            }
+            
+            .accordion {
+                max-width: 800px;
+                margin: 0 auto;
+                text-align: left;
+            }
+            
+            .accordion-item {
+                margin-bottom: 20px;
+                border-radius: 10px;
+                overflow: hidden;
+                border: 1px solid rgba(255, 255, 255, 0.1);
+                background: rgba(255, 255, 255, 0.05);
+                backdrop-filter: blur(8px);
+                opacity: 0;
+                transform: translateY(30px);
+                transition: opacity 0.8s ease, transform 0.8s ease;
+            }
+            
+            .accordion-item.show {
+                opacity: 1;
+                transform: translateY(0);
+            }
+            
+            .accordion-header {
+                width: 100%;
+                background: none;
+                color: white;
+                padding: 16px 20px;
+                text-align: left;
+                font-size: 1.1rem;
+                font-weight: 600;
+                cursor: pointer;
+                border: none;
+                outline: none;
+                transition: background 0.3s ease;
+            }
+            
+            .accordion-header:hover {
+                background: rgba(255, 255, 255, 0.1);
+            }
+            
+            .accordion-content {
+                max-height: 0;
+                overflow: hidden;
+                background: rgba(255, 255, 255, 0.03);
+                transition: max-height 0.4s ease;
+            }
+            
+            .accordion-content ul {
+                padding: 16px 25px;
+                margin: 0;
+                list-style: disc;
+            }
+            
+            .accordion-content li {
+                padding: 5px 0;
+                color: #ccc;
+            }
 
 
 
@@ -782,23 +779,86 @@
 
     <!-- Skills Section -->
     <section id="skills">
-        <div class="skills-video-container">
-            <video autoplay muted loop playsinline class="skills-bg-video">
-                <source src="./images/skills-background.mp4" type="video/mp4" />
-            </video>
-            <div class="skills-overlay"></div>
-        </div>
         <div class="container">
             <h2 class="section-title">Skills</h2>
-            <div class="skills-grid">
-                <div class="skill-card">SolidWorks</div>
-                <div class="skill-card">Ansys</div>
-                <div class="skill-card">CATIA V5</div>
-                <div class="skill-card">GD&T</div>
-                <div class="skill-card">Python</div>
-                <div class="skill-card">MATLAB</div>
-                <div class="skill-card">FEA</div>
-                <div class="skill-card">DFM / DFA</div>
+            <div class="accordion">
+    
+                <!-- Mechanical Design Fundamentals -->
+                <div class="accordion-item">
+                    <button class="accordion-header">Mechanical Design Fundamentals</button>
+                    <div class="accordion-content">
+                        <ul>
+                            <li>Mechanics of Materials</li>
+                            <li>Machine Design</li>
+                            <li>Tolerance Stack-Up Analysis</li>
+                            <li>Fits & Clearances</li>
+                            <li>Failure Mode Analysis</li>
+                            <li>Material Selection</li>
+                            <li>Vibration Damping</li>
+                            <li>GD&T</li>
+                        </ul>
+                    </div>
+                </div>
+    
+                <!-- Design & Simulation Software -->
+                <div class="accordion-item">
+                    <button class="accordion-header">Design & Simulation Software</button>
+                    <div class="accordion-content">
+                        <ul>
+                            <li>SolidWorks</li>
+                            <li>CATIA V5</li>
+                            <li>AutoCAD</li>
+                            <li>Ansys Workbench</li>
+                            <li>Abaqus</li>
+                            <li>Fusion 360</li>
+                            <li>MATLAB / Simulink</li>
+                        </ul>
+                    </div>
+                </div>
+    
+                <!-- Programming & Data Tools -->
+                <div class="accordion-item">
+                    <button class="accordion-header">Programming & Data Tools</button>
+                    <div class="accordion-content">
+                        <ul>
+                            <li>Python</li>
+                            <li>MATLAB</li>
+                            <li>Arduino / Embedded Systems</li>
+                            <li>Excel VBA</li>
+                            <li>Git / Version Control</li>
+                        </ul>
+                    </div>
+                </div>
+    
+                <!-- Manufacturing & DFM -->
+                <div class="accordion-item">
+                    <button class="accordion-header">Manufacturing & DFM</button>
+                    <div class="accordion-content">
+                        <ul>
+                            <li>Design for Manufacturing (DFM)</li>
+                            <li>Design for Assembly (DFA)</li>
+                            <li>Sheet Metal Design</li>
+                            <li>Injection Molding</li>
+                            <li>Engineering Change Orders (ECOs)</li>
+                            <li>Prototyping & Validation</li>
+                        </ul>
+                    </div>
+                </div>
+    
+                <!-- Testing & Validation -->
+                <div class="accordion-item">
+                    <button class="accordion-header">Testing & Validation</button>
+                    <div class="accordion-content">
+                        <ul>
+                            <li>FEA & Structural Analysis</li>
+                            <li>Vibration & Thermal Testing</li>
+                            <li>Tensile / Torsion Testing</li>
+                            <li>DAQ Systems & Sensors</li>
+                            <li>Root Cause Analysis</li>
+                        </ul>
+                    </div>
+                </div>
+    
             </div>
         </div>
     </section>
@@ -938,6 +998,33 @@
             // Replace 'resume.pdf' with the actual path to Thanh's resume PDF
             window.open('resume.pdf', '_blank');
         }
+
+        // Accordion Toggle
+        document.querySelectorAll('.accordion-header').forEach(button => {
+            button.addEventListener('click', () => {
+                const content = button.nextElementSibling;
+                button.classList.toggle('active');
+                const all = document.querySelectorAll('.accordion-content');
+                all.forEach(section => {
+                    if (section !== content) section.style.maxHeight = null;
+                });
+        
+                if (content.style.maxHeight) {
+                    content.style.maxHeight = null;
+                } else {
+                    content.style.maxHeight = content.scrollHeight + "px";
+                }
+            });
+        });
+        
+        // IntersectionObserver for accordion animations
+        document.querySelectorAll('.accordion-item').forEach(item => {
+            item.style.opacity = '0';
+            item.style.transform = 'translateY(30px)';
+            item.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+            observer.observe(item);
+        });
+
     </script>
 </body>
 </html>
