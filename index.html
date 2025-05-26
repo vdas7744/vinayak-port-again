@@ -554,31 +554,61 @@
 
         /*skills section */
         #skills {
-            background: linear-gradient(135deg, #0a0a0f 0%, #1a1a2e 100%);
+            position: relative;
             color: white;
-            padding: 100px 0;
+            padding: 60px 0;
             text-align: center;
+            overflow: hidden;
+            background: #0a0a0f;
+        }
+        
+        .skills-video-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 100%;
+            z-index: -2;
+            overflow: hidden;
+        }
+        
+        .skills-bg-video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.25;
+            filter: blur(2px);
+        }
+        
+        .skills-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 100%;
+            background: rgba(10, 10, 15, 0.7);
+            z-index: -1;
         }
         
         .skills-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-            gap: 30px;
-            max-width: 1000px;
-            margin: 0 auto;
+            gap: 25px;
+            max-width: 900px;
+            margin: 40px auto 0;
         }
         
         .skill-card {
-            background: rgba(255, 255, 255, 0.05);
+            background: rgba(255, 255, 255, 0.06);
             border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 15px;
-            padding: 20px;
+            border-radius: 12px;
+            padding: 14px 18px;
             font-weight: 600;
-            font-size: 1rem;
+            font-size: 0.95rem;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
-            backdrop-filter: blur(10px);
+            backdrop-filter: blur(8px);
             opacity: 0;
-            transform: translateY(30px);
+            transform: translateY(20px);
             transition: opacity 0.8s ease, transform 0.8s ease;
         }
         
@@ -591,6 +621,7 @@
             transform: scale(1.05);
             box-shadow: 0 10px 20px rgba(255, 255, 255, 0.1);
         }
+
 
 
         /* Scroll indicator */
@@ -612,23 +643,6 @@
         }
     </style>
 </head>
-    <!-- Skills Section -->
-<section id="skills">
-    <div class="container">
-        <h2 class="section-title">Skills</h2>
-        <div class="skills-grid">
-            <div class="skill-card">SolidWorks</div>
-            <div class="skill-card">Ansys</div>
-            <div class="skill-card">CATIA V5</div>
-            <div class="skill-card">GD&T</div>
-            <div class="skill-card">Python</div>
-            <div class="skill-card">MATLAB</div>
-            <div class="skill-card">FEA</div>
-            <div class="skill-card">DFM / DFA</div>
-        </div>
-    </div>
-</section>
-
 <body>
     <!-- Scroll Progress Indicator -->
     <div class="scroll-indicator">
@@ -766,6 +780,30 @@
         </div>
     </section>
 
+    <!-- Skills Section -->
+    <section id="skills">
+        <div class="skills-video-container">
+            <video autoplay muted loop playsinline class="skills-bg-video">
+                <source src="./images/skills-background.mp4" type="video/mp4" />
+            </video>
+            <div class="skills-overlay"></div>
+        </div>
+        <div class="container">
+            <h2 class="section-title">Skills</h2>
+            <div class="skills-grid">
+                <div class="skill-card">SolidWorks</div>
+                <div class="skill-card">Ansys</div>
+                <div class="skill-card">CATIA V5</div>
+                <div class="skill-card">GD&T</div>
+                <div class="skill-card">Python</div>
+                <div class="skill-card">MATLAB</div>
+                <div class="skill-card">FEA</div>
+                <div class="skill-card">DFM / DFA</div>
+            </div>
+        </div>
+    </section>
+
+    
     <!-- Education Section -->
     <section id="education">
         <div class="projects-overlay"></div>
