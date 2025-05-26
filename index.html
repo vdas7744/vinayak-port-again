@@ -553,71 +553,73 @@
         }
 
         /*skills section */
-        #skills {
-                background: linear-gradient(135deg, #0a0a0f 0%, #1a1a2e 100%);
-                color: white;
-                padding: 80px 0;
-                text-align: center;
+        .skills-grid-wrapper {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+        
+        .skills-row {
+            display: flex;
+            gap: 30px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        
+        .accordion-item {
+            flex: 1 1 320px;
+            min-width: 280px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            overflow: hidden;
+            backdrop-filter: blur(8px);
+            transition: all 0.4s ease;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        
+        .accordion-item.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .accordion-header {
+            padding: 14px 20px;
+            font-size: 1rem;
+            font-weight: 600;
+            background: none;
+            border: none;
+            width: 100%;
+            text-align: left;
+            color: white;
+            cursor: pointer;
+        }
+        
+        .accordion-content {
+            background: rgba(255, 255, 255, 0.03);
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease;
+        }
+        
+        .accordion-content ul {
+            list-style: disc;
+            padding: 15px 25px;
+            margin: 0;
+        }
+        
+        .accordion-content li {
+            padding: 5px 0;
+            color: #ccc;
+        }
+        
+        @media (max-width: 768px) {
+            .skills-row {
+                flex-direction: column;
             }
-            
-            .accordion {
-                max-width: 800px;
-                margin: 0 auto;
-                text-align: left;
-            }
-            
-            .accordion-item {
-                margin-bottom: 20px;
-                border-radius: 10px;
-                overflow: hidden;
-                border: 1px solid rgba(255, 255, 255, 0.1);
-                background: rgba(255, 255, 255, 0.05);
-                backdrop-filter: blur(8px);
-                opacity: 0;
-                transform: translateY(30px);
-                transition: opacity 0.8s ease, transform 0.8s ease;
-            }
-            
-            .accordion-item.show {
-                opacity: 1;
-                transform: translateY(0);
-            }
-            
-            .accordion-header {
-                width: 100%;
-                background: none;
-                color: white;
-                padding: 16px 20px;
-                text-align: left;
-                font-size: 1.1rem;
-                font-weight: 600;
-                cursor: pointer;
-                border: none;
-                outline: none;
-                transition: background 0.3s ease;
-            }
-            
-            .accordion-header:hover {
-                background: rgba(255, 255, 255, 0.1);
-            }
-            
-            .accordion-content {
-                max-height: 0;
-                overflow: hidden;
-                background: rgba(255, 255, 255, 0.03);
-                transition: max-height 0.4s ease;
-            }
-            
-            .accordion-content ul {
-                padding: 16px 25px;
-                margin: 0;
-                list-style: disc;
-            }
-            
-            .accordion-content li {
-                padding: 5px 0;
-                color: #ccc;
-            }
+        }
+
 
 
 
@@ -781,87 +783,90 @@
     <section id="skills">
         <div class="container">
             <h2 class="section-title">Skills</h2>
-            <div class="accordion">
     
-                <!-- Mechanical Design Fundamentals -->
-                <div class="accordion-item">
-                    <button class="accordion-header">Mechanical Design Fundamentals</button>
-                    <div class="accordion-content">
-                        <ul>
-                            <li>Mechanics of Materials</li>
-                            <li>Machine Design</li>
-                            <li>Tolerance Stack-Up Analysis</li>
-                            <li>Fits & Clearances</li>
-                            <li>Failure Mode Analysis</li>
-                            <li>Material Selection</li>
-                            <li>Vibration Damping</li>
-                            <li>GD&T</li>
-                        </ul>
+            <div class="skills-grid-wrapper">
+    
+                <div class="skills-row">
+                    <div class="accordion-item">
+                        <button class="accordion-header">Mechanical Design Fundamentals</button>
+                        <div class="accordion-content">
+                            <ul>
+                                <li>Mechanics of Materials</li>
+                                <li>Machine Design</li>
+                                <li>Tolerance Stack-Up Analysis</li>
+                                <li>Fits & Clearances</li>
+                                <li>Failure Mode Analysis</li>
+                                <li>Material Selection</li>
+                                <li>Vibration Damping</li>
+                                <li>GD&T</li>
+                            </ul>
+                        </div>
+                    </div>
+    
+                    <div class="accordion-item">
+                        <button class="accordion-header">Design & Simulation Software</button>
+                        <div class="accordion-content">
+                            <ul>
+                                <li>SolidWorks</li>
+                                <li>CATIA V5</li>
+                                <li>AutoCAD</li>
+                                <li>Ansys Workbench</li>
+                                <li>Abaqus</li>
+                                <li>Fusion 360</li>
+                                <li>MATLAB / Simulink</li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
     
-                <!-- Design & Simulation Software -->
-                <div class="accordion-item">
-                    <button class="accordion-header">Design & Simulation Software</button>
-                    <div class="accordion-content">
-                        <ul>
-                            <li>SolidWorks</li>
-                            <li>CATIA V5</li>
-                            <li>AutoCAD</li>
-                            <li>Ansys Workbench</li>
-                            <li>Abaqus</li>
-                            <li>Fusion 360</li>
-                            <li>MATLAB / Simulink</li>
-                        </ul>
+                <div class="skills-row">
+                    <div class="accordion-item">
+                        <button class="accordion-header">Programming & Data Tools</button>
+                        <div class="accordion-content">
+                            <ul>
+                                <li>Python</li>
+                                <li>MATLAB</li>
+                                <li>Arduino / Embedded Systems</li>
+                                <li>Excel VBA</li>
+                                <li>Git / Version Control</li>
+                            </ul>
+                        </div>
+                    </div>
+    
+                    <div class="accordion-item">
+                        <button class="accordion-header">Manufacturing & DFM</button>
+                        <div class="accordion-content">
+                            <ul>
+                                <li>Design for Manufacturing (DFM)</li>
+                                <li>Design for Assembly (DFA)</li>
+                                <li>Sheet Metal Design</li>
+                                <li>Injection Molding</li>
+                                <li>Engineering Change Orders (ECOs)</li>
+                                <li>Prototyping & Validation</li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
     
-                <!-- Programming & Data Tools -->
-                <div class="accordion-item">
-                    <button class="accordion-header">Programming & Data Tools</button>
-                    <div class="accordion-content">
-                        <ul>
-                            <li>Python</li>
-                            <li>MATLAB</li>
-                            <li>Arduino / Embedded Systems</li>
-                            <li>Excel VBA</li>
-                            <li>Git / Version Control</li>
-                        </ul>
-                    </div>
-                </div>
-    
-                <!-- Manufacturing & DFM -->
-                <div class="accordion-item">
-                    <button class="accordion-header">Manufacturing & DFM</button>
-                    <div class="accordion-content">
-                        <ul>
-                            <li>Design for Manufacturing (DFM)</li>
-                            <li>Design for Assembly (DFA)</li>
-                            <li>Sheet Metal Design</li>
-                            <li>Injection Molding</li>
-                            <li>Engineering Change Orders (ECOs)</li>
-                            <li>Prototyping & Validation</li>
-                        </ul>
-                    </div>
-                </div>
-    
-                <!-- Testing & Validation -->
-                <div class="accordion-item">
-                    <button class="accordion-header">Testing & Validation</button>
-                    <div class="accordion-content">
-                        <ul>
-                            <li>FEA & Structural Analysis</li>
-                            <li>Vibration & Thermal Testing</li>
-                            <li>Tensile / Torsion Testing</li>
-                            <li>DAQ Systems & Sensors</li>
-                            <li>Root Cause Analysis</li>
-                        </ul>
+                <div class="skills-row">
+                    <div class="accordion-item">
+                        <button class="accordion-header">Testing & Validation</button>
+                        <div class="accordion-content">
+                            <ul>
+                                <li>FEA & Structural Analysis</li>
+                                <li>Vibration & Thermal Testing</li>
+                                <li>Tensile / Torsion Testing</li>
+                                <li>DAQ Systems & Sensors</li>
+                                <li>Root Cause Analysis</li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
     
             </div>
         </div>
     </section>
+
 
     
     <!-- Education Section -->
@@ -1017,13 +1022,30 @@
             });
         });
         
-        // IntersectionObserver for accordion animations
+        // Accordion auto-expand on scroll
+        const skillObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const item = entry.target;
+                    item.classList.add('show');
+        
+                    const content = item.querySelector('.accordion-content');
+                    if (content && content.style.maxHeight === "") {
+                        content.style.maxHeight = content.scrollHeight + "px";
+                    }
+                }
+            });
+        }, {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        });
+        
         document.querySelectorAll('.accordion-item').forEach(item => {
             item.style.opacity = '0';
             item.style.transform = 'translateY(30px)';
-            item.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
-            observer.observe(item);
+            skillObserver.observe(item);
         });
+
 
     </script>
 </body>
