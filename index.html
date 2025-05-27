@@ -989,23 +989,6 @@
             window.open('resume.pdf', '_blank');
         }
         
-        // Accordion auto-expand on scroll
-        const skillObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const item = entry.target;
-                    item.classList.add('show');
-        
-                    const content = item.querySelector('.accordion-content');
-                    if (content && content.style.maxHeight === "") {
-                        content.style.maxHeight = content.scrollHeight + "px";
-                    }
-                }
-            });
-        }, {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        });
         
 
 
