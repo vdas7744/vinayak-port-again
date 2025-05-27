@@ -553,78 +553,69 @@
         }
 
         /*skills section */
-        .skills-grid-wrapper {
-            display: flex;
-            flex-direction: column;
-            gap: 30px;
-        }
-        
-        .skills-row {
-            display: flex;
-            gap: 20px;
-            flex-wrap: nowrap;
-            justify-content: center;
-            overflow-x: auto;
-        }
-        
-        .accordion-item {
-            flex: 0 0 260px;
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 12px;
-            height: auto;
-            max-height: 50px;
-            overflow: hidden;
-            transition: max-height 0.4s ease;
-            backdrop-filter: blur(8px);
-        }
-        
-        .accordion-item.show {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        
-        .accordion-header {
-            padding: 14px 20px;
-            font-size: 1rem;
-            font-weight: 600;
-            background: none;
-            border: none;
-            width: 100%;
-            text-align: left;
-            color: white;
-            cursor: pointer;
-        }
-        
-        .accordion-content {
-            background: rgba(255, 255, 255, 0.03);
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.4s ease;
-        }
-        
-        .accordion-content ul {
-            list-style: disc;
-            padding: 15px 25px;
-            margin: 0;
-        }
-        
-        .accordion-content li {
-            padding: 5px 0;
-            color: #ccc;
-        }
-
-        .accordion-item:hover {
-              max-height: 500px;
-        }
-        
-        @media (max-width: 768px) {
-            .skills-row {
-                flex-direction: column;
+            #skills {
+              background: linear-gradient(135deg, #0a0a0f, #1a1a2e);
             }
-        }
-
-
+        
+            .skills-grid-wrapper {
+              display: flex;
+              flex-direction: column;
+              gap: 20px;
+              max-width: 1400px;
+              margin: auto;
+            }
+        
+            .skills-row {
+              display: flex;
+              gap: 20px;
+              flex-wrap: nowrap;
+              justify-content: center;
+              overflow-x: auto;
+            }
+        
+            .accordion-item {
+              flex: 0 0 260px;
+              background: rgba(255, 255, 255, 0.05);
+              border: 1px solid rgba(255, 255, 255, 0.1);
+              border-radius: 12px;
+              height: auto;
+              max-height: 50px;
+              overflow: hidden;
+              transition: max-height 0.4s ease;
+              backdrop-filter: blur(8px);
+            }
+        
+            .accordion-header {
+              padding: 14px 18px;
+              font-size: 1rem;
+              font-weight: 600;
+              background: none;
+              border: none;
+              text-align: left;
+              color: white;
+              cursor: default;
+            }
+        
+            .accordion-content {
+              background: rgba(255, 255, 255, 0.03);
+              padding: 0 18px 10px;
+            }
+        
+            .accordion-content ul {
+              list-style: disc;
+              padding-left: 18px;
+              margin: 0;
+            }
+        
+            .accordion-content li {
+              padding: 4px 0;
+              font-size: 0.9rem;
+              color: #ccc;
+            }
+        
+            .accordion-item:hover {
+              max-height: 500px;
+            }
 
 
         /* Scroll indicator */
