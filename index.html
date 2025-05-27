@@ -980,7 +980,7 @@
         }, observerOptions);
 
         // Observe all project cards and timeline items
-        document.querySelectorAll('.project-card, .timeline-item, .accordion-item').forEach(card => {
+        document.querySelectorAll('.project-card, .timeline-item').forEach(card => {
             card.style.opacity = '0';
             card.style.transform = 'translateY(30px)';
             card.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
