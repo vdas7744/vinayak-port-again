@@ -976,7 +976,7 @@
         }, observerOptions);
 
         // Observe all project cards and timeline items
-        document.querySelectorAll('.project-card, .timeline-item, .skill-card').forEach(card => {
+        document.querySelectorAll('.project-card, .timeline-item, .accordion-item').forEach(card => {
             card.style.opacity = '0';
             card.style.transform = 'translateY(30px)';
             card.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
@@ -1007,11 +1007,6 @@
             rootMargin: '0px 0px -50px 0px'
         });
         
-        document.querySelectorAll('.accordion-item').forEach(item => {
-            item.style.opacity = '0';
-            item.style.transform = 'translateY(30px)';
-            skillObserver.observe(item);
-        });
 
 
     </script>
