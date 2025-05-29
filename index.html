@@ -18,8 +18,9 @@
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             line-height: 1.6;
-            color: #333;
+            color: #e0e0e0;
             overflow-x: hidden;
+            background-color: #121212;
         }
 
         /* Navigation */
@@ -30,18 +31,53 @@
             z-index: 1000;
             padding: 20px 40px;
             border-radius: 0 0 0 20px;
-            transition: all 0.3s ease;
+            background: none;
+            width: auto;
+            transition: 
+                background 0.6s cubic-bezier(0.42, 0, 0.58, 1),
+                width 0.6s cubic-bezier(0.42, 0, 0.58, 1),
+                left 0.6s cubic-bezier(0.42, 0, 0.58, 1),
+                right 0.6s cubic-bezier(0.42, 0, 0.58, 1),
+                border-radius 0.6s cubic-bezier(0.42, 0, 0.58, 1),
+                padding 0.6s cubic-bezier(0.42, 0, 0.58, 1);
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            box-sizing: border-box;
         }
 
         .navbar.scrolled {
-            background: transparent;
-            padding: 15px 40px;
+            background: rgba(10, 16, 26, 0.85);
+            backdrop-filter: blur(12px);
+            padding: 15px 0;
+            left: 0;
+            right: 0;
+            width: 100vw;
+            border-radius: 0;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: 
+                background 0.6s cubic-bezier(0.42, 0, 0.58, 1),
+                width 0.6s cubic-bezier(0.42, 0, 0.58, 1),
+                left 0.6s cubic-bezier(0.42, 0, 0.58, 1),
+                right 0.6s cubic-bezier(0.42, 0, 0.58, 1),
+                border-radius 0.6s cubic-bezier(0.42, 0, 0.58, 1),
+                padding 0.6s cubic-bezier(0.42, 0, 0.58, 1);
+        }
+
+        .navbar.scrolled .nav-links {
+            justify-content: center !important;
         }
 
         .nav-links {
             display: flex;
             list-style: none;
             gap: 30px;
+            justify-content: flex-end;
+            width: 100%;
+            transition: justify-content 0.6s cubic-bezier(0.42, 0, 0.58, 1);
         }
 
         .nav-links a {
@@ -99,7 +135,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(135deg, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.4));
+            background: linear-gradient(135deg, rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.7));
             z-index: -1;
         }
 
@@ -108,6 +144,7 @@
             color: white;
             z-index: 1;
             animation: fadeInUp 1s ease-out;
+            padding: 0 20px;
         }
 
         .hero-subtitle {
@@ -174,6 +211,7 @@
             margin-bottom: 50px;
             text-align: center;
             position: relative;
+            color: #e0e0e0;
         }
 
         .section-title::after {
@@ -190,8 +228,8 @@
 
         /* Experience Section */
         #resume {
-            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
-            color: #333;
+            background: #1a1a1a;
+            color: #e0e0e0;
             padding: 100px 0;
         }
 
@@ -225,7 +263,7 @@
             height:60px;
             border-radius: 50%;
             object-fit: cover;
-            border: 2px solid black;
+            border: 2px solid #444;
         }
 
         .company-logo.genie { background: #4285f4; }
@@ -289,22 +327,22 @@
         .timeline-dot.isro { background: #1e40af; }
 
         .timeline-content {
-            background: white;
+            background: #222;
             padding: 0;
             border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
             overflow: hidden;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
         .timeline-content:hover {
             transform: translateY(-5px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
         }
 
         .timeline-header {
             padding: 20px 25px 15px;
-            border-bottom: 1px solid #eee;
+            border-bottom: 1px solid #333;
         }
 
         .timeline-date {
@@ -321,7 +359,7 @@
         .timeline-title {
             font-size: 1.2rem;
             font-weight: 600;
-            color: #333;
+            color: #e0e0e0;
             margin: 8px 0 5px;
         }
 
@@ -333,12 +371,12 @@
 
         .timeline-description {
             padding: 20px 25px;
-            color: #666;
+            color: #ccc;
             line-height: 1.6;
         }
 
         .read-more {
-            color: #4285f4;
+            color: #4ecdc4;
             font-weight: 500;
             cursor: pointer;
             text-decoration: none;
@@ -346,7 +384,7 @@
         }
 
         .read-more:hover {
-            color: #1e40af;
+            color: #ff6b6b;
         }
 
         /* Resume Link Section */
@@ -381,25 +419,9 @@
         /* Projects Section */
         #projects {
             position: relative;
-            background: #f8f9fa;
+            background: #151515;
             overflow: hidden;
         }
-
-        .projects-background {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100vh;
-            background-image: url('https://images.unsplash.com/photo-1581092160562-40aa08e78837?w=1920&h=1080&fit=crop');
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
-            z-index: -1;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-
 
         #projects .container {
             position: relative;
@@ -407,8 +429,7 @@
         }
 
         #projects .section-title {
-            color: white;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            color: #e0e0e0;
         }
 
         .projects-grid {
@@ -418,22 +439,21 @@
             margin-top: 50px;
         }
 
-
         .project-card {
-            background: white;
+            background: #222;
             border-radius: 15px;
             overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
         .project-card:hover {
             transform: translateY(-10px);
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
         }
 
         .project-image {
-            height: 500px;
+            height: 300px;
             background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
             display: flex;
             align-items: center;
@@ -441,6 +461,13 @@
             color: white;
             font-size: 1.2rem;
             font-weight: bold;
+            position: relative;
+        }
+
+        .project-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
 
         .project-content {
@@ -450,12 +477,16 @@
         .project-content h3 {
             font-size: 1.4rem;
             margin-bottom: 15px;
-            color: #333;
+            color: #e0e0e0;
+        }
+
+        .project-content p {
+            color: #ccc;
         }
 
         /* Contact Section */
         #contact {
-            background: linear-gradient(135deg,  #333);
+            background: linear-gradient(135deg, #1a1a1a, #121212);
             color: white;
         }
 
@@ -474,19 +505,172 @@
         }
 
         .contact-item {
-            background: #333;
+            background: rgba(255, 255, 255, 0.05);
             padding: 20px;
             border-radius: 10px;
             backdrop-filter: blur(10px);
-            border: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.05);
             transition: transform 0.3s ease;
         }
 
         .contact-item:hover {
             transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.08);
         }
 
-        /* Responsive Design */
+        .contact-item a {
+            color: #4ecdc4;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .contact-item a:hover {
+            color: #ff6b6b;
+        }
+
+        /* Skills Section - Infinite Carousel */
+        #skills {
+            background: linear-gradient(135deg, #0a0a0f, #1a1a2e);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: auto;
+            padding: 80px 20px;
+            overflow: hidden;
+        }
+
+        #skills .section-title {
+            color: white;
+            margin-bottom: 60px;
+        }
+
+        .carousel-container {
+            width: 100%;
+            max-width: 1400px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .carousel-track {
+            display: flex;
+            animation: scroll 30s linear infinite;
+            gap: 20px;
+            width: max-content;
+        }
+
+        .carousel-track:hover {
+            animation-play-state: paused;
+        }
+
+        @keyframes scroll {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(-50%);
+            }
+        }
+
+        .skill-card {
+            flex: 0 0 300px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            backdrop-filter: blur(8px);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            min-height: 200px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .skill-card:hover {
+            transform: translateY(-10px);
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(255, 255, 255, 0.3);
+        }
+
+        .skill-header {
+            padding: 20px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: white;
+            text-align: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .skill-content {
+            padding: 20px;
+            flex-grow: 1;
+        }
+
+        .skill-content ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .skill-content li {
+            padding: 6px 0;
+            font-size: 0.9rem;
+            color: #ccc;
+            position: relative;
+            padding-left: 20px;
+        }
+
+        .skill-content li::before {
+            content: '▸';
+            position: absolute;
+            left: 0;
+            color: #4ecdc4;
+        }
+
+        /* Education Section */
+        #education {
+            background: #1a1a1a;
+        }
+
+        /* Mobile Navigation */
+        .mobile-nav-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            z-index: 1001;
+        }
+
+        /* Scroll indicator */
+        .scroll-indicator {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.1);
+            z-index: 1001;
+        }
+
+        .scroll-progress {
+            height: 100%;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            width: 0%;
+            transition: width 0.1s ease;
+        }
+
+        /* Touch indicators for mobile */
+        .touch-hint {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.9rem;
+            display: none;
+        }
+
+        /* Mobile Responsive Design */
         @media (max-width: 768px) {
             .navbar {
                 padding: 15px 20px;
@@ -501,15 +685,19 @@
             }
 
             .hero-title {
-                font-size: 8rem;
+                font-size: 2.8rem;
             }
 
             .hero-subtitle {
+                font-size: 1.2rem;
+            }
+
+            .hero-description {
                 font-size: 1rem;
             }
 
             .section-title {
-                font-size: 2.5rem;
+                font-size: 2rem;
             }
 
             .container {
@@ -550,96 +738,172 @@
                 height: 50px;
                 font-size: 20px;
             }
+
+            .company-logo img {
+                width: 50px;
+                height: 50px;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .project-image {
+                height: 250px;
+            }
+
+            /* Mobile Skills Carousel */
+            .skill-card {
+                flex: 0 0 280px;
+                min-height: 180px;
+            }
+
+            .carousel-track {
+                animation-duration: 25s;
+            }
+
+            .touch-hint {
+                display: block;
+            }
+
+            /* Mobile navigation improvements */
+            .mobile-nav-toggle {
+                display: block;
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                z-index: 1002;
+            }
+
+            .nav-links {
+                display: none;
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100vh;
+                background: rgba(0, 0, 0, 0.95);
+                backdrop-filter: blur(10px);
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                gap: 40px;
+            }
+
+            .nav-links.mobile-open {
+                display: flex;
+            }
+
+            .nav-links a {
+                font-size: 1.5rem;
+            }
         }
 
-        /*skills section */
-            #skills {
-              background: linear-gradient(135deg, #0a0a0f, #1a1a2e);
-              display: flex;
-              flex-direction: column;
-              align-items: center;
-              min-height: auto;
-              padding: 80px 20px;
+        @media (max-width: 480px) {
+            .skill-card {
+                flex: 0 0 250px;
+                min-height: 160px;
             }
 
-        
-            .skills-grid-wrapper {
-              display: flex;
-              flex-direction: column;
-              gap: 20px;
-              max-width: 1400px;
-              margin: auto;
-            }
-        
-            .skills-row {
-              display: flex;
-              gap: 20px;
-              flex-wrap: nowrap;
-              justify-content: center;
-              overflow-x: auto;
-            }
-        
-            .accordion-item {
-              flex: 0 0 260px;
-              background: rgba(255, 255, 255, 0.05);
-              border: 1px solid rgba(255, 255, 255, 0.1);
-              border-radius: 12px;
-              height: auto;
-              max-height: 50px;
-              overflow: hidden;
-              transition: max-height 0.4s ease;
-              backdrop-filter: blur(8px);
-            }
-        
-            .accordion-header {
-              padding: 14px 14px;
-              font-size: 1rem;
-              font-weight: 600;
-              background: none;
-              border: none;
-              text-align: left;
-              color: white;
-              cursor: default;
-            }
-        
-            .accordion-content {
-              background: rgba(255, 255, 255, 0.03);
-              padding: 0 18px 10px;
-            }
-        
-            .accordion-content ul {
-              list-style: disc;
-              padding-left: 18px;
-              margin: 0;
-            }
-        
-            .accordion-content li {
-              padding: 4px 0;
-              font-size: 0.9rem;
-              color: #ccc;
-            }
-        
-            .accordion-item:hover {
-              max-height: 500px;
+            .skill-header {
+                font-size: 1rem;
+                padding: 15px;
             }
 
+            .skill-content {
+                padding: 15px;
+            }
 
-        /* Scroll indicator */
-        .scroll-indicator {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 4px;
-            background: rgba(255, 255, 255, 0.2);
-            z-index: 1001;
+            .carousel-track {
+                animation-duration: 20s;
+            }
+
+            .hero-title {
+                font-size: 2.2rem;
+            }
+
+            .section-title {
+                font-size: 1.8rem;
+            }
         }
 
-        .scroll-progress {
-            height: 100%;
-            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
-            width: 0%;
-            transition: width 0.1s ease;
+        /* Add smooth scrolling for better UX */
+        @media (prefers-reduced-motion: no-preference) {
+            * {
+                scroll-behavior: smooth;
+            }
+        }
+
+        @media (max-width: 768px) {
+            /* Navbar full width, no overlap */
+            .navbar {
+                width: 100vw;
+                left: 0;
+                right: 0;
+                top: 0;
+                border-radius: 0 0 20px 20px;
+                background: rgba(10,10,10,0.9);
+                padding: 15px 20px;
+                z-index: 1000;
+            }
+
+            /* Fix mobile nav menu size */
+            .nav-links.mobile-open {
+                top: 0;
+                left: 0;
+                width: 100vw;
+                height: 100vh;
+                border-radius: 0;
+            }
+
+            /* Reduce section padding for mobile */
+            section {
+                padding: 40px 0 !important;
+                min-height: unset !important;
+            }
+
+            /* Smaller section titles */
+            .section-title {
+                margin-bottom: 24px;
+            }
+
+            /* Make sure hero section content isn't hidden under navbar */
+            .hero {
+                padding-top: 64px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            section {
+                padding: 24px 0 !important;
+            }
+            .section-title {
+                margin-bottom: 14px;
+            }
+            .hero {
+                padding-top: 52px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .navbar,
+            .navbar.scrolled {
+                background: rgba(10, 10, 10, 0.9) !important;
+                backdrop-filter: blur(10px) !important;
+                box-shadow: 0 4px 20px rgba(0,0,0,0.3) !important;
+                border-radius: 0 !important;
+                padding: 10px 0;
+            }
+        }
+        @media (max-width: 480px) {
+            .navbar,
+            .navbar.scrolled {
+                background: rgba(10, 10, 10, 0.9) !important;
+                backdrop-filter: blur(10px) !important;
+                box-shadow: 0 4px 20px rgba(0,0,0,0.3) !important;
+                border-radius: 0 !important;
+            }
         }
     </style>
 </head>
@@ -649,24 +913,24 @@
         <div class="scroll-progress" id="scrollProgress"></div>
     </div>
 
+    <!-- Mobile Navigation Toggle -->
+    <button class="mobile-nav-toggle" id="mobileNavToggle">☰</button>
+
     <!-- Navigation -->
     <nav class="navbar" id="navbar">
-        <ul class="nav-links">
+        <ul class="nav-links" id="navLinks">
             <li><a href="#home">Home</a></li>
             <li><a href="#resume">Resume</a></li>
+            <li><a href="#skills">Skills</a></li>
             <li><a href="#projects">Projects</a></li>
             <li><a href="#contact">Contact</a></li>
         </ul>
     </nav>
 
-    <!-- Projects Background -->
-    <div class="projects-background" id="projectsBackground"></div>
-
     <!-- Hero Section -->
     <section id="home" class="hero">
         <video class="video-background" autoplay muted loop>
             <source src="./images/background.mp4" type="video/mp4">
-            <!-- Fallback for browsers that don't support video -->
         </video>
         <div class="hero-overlay"></div>
         <div class="hero-content">
@@ -686,22 +950,22 @@
             <!-- Company Logos -->
             <div class="company-logos">
                 <div class="company-logo genie">
-                    <img src="./images/genie.jpeg" alt="Company logo"></img>
+                    <img src="./images/genie.jpeg" alt="Genie logo">
                 </div>
                 <div class="company-logo hero">
-                    <img src="./images/hero.jpeg" alt="Company logo"></img>
+                    <img src="./images/hero.jpeg" alt="Hero logo">
                 </div>
                 <div class="company-logo agrostar">
-                    <img src="./images/agrostar.jpeg" alt="Company logo"></img>
+                    <img src="./images/agrostar.jpeg" alt="AgroStar logo">
                 </div>
                 <div class="company-logo isro">
-                    <img src="./images/isro.jpeg" alt="Company logo"></img>
+                    <img src="./images/isro.jpeg" alt="ISRO logo">
                 </div>
             </div>
 
             <!-- Timeline -->
             <div class="timeline">
-                <!-- genie Experience -->
+                <!-- Genie Experience -->
                 <div class="timeline-item">
                     <div class="timeline-dot genie"></div>
                     <div class="timeline-content">
@@ -710,15 +974,15 @@
                             <div class="timeline-location">Redmond, WA</div>
                             <h3 class="timeline-title">Design Engineer Co-op</h3>
                         </div>
-                        <img src="./images/genie.jpeg" class="timeline-image">
+                        <img src="./images/genie.jpeg" class="timeline-image" alt="Genie">
                         <div class="timeline-description">
-                            add your description
+                            Drove mechanical design improvements for aerial platforms, focusing on cost reduction, manufacturability, and supplier collaboration.
                             <br><a href="./all-companies-info/genie.html" class="read-more">Read More</a>
                         </div>
                     </div>
                 </div>
 
-                <!-- hero Experience -->
+                <!-- Hero Experience -->
                 <div class="timeline-item">
                     <div class="timeline-dot hero"></div>
                     <div class="timeline-content">
@@ -727,9 +991,9 @@
                             <div class="timeline-location">Rajasthan, India</div>
                             <h3 class="timeline-title">Design and Development Engineer</h3>
                         </div>
-                        <img src="./images/hero.jpeg" alt="company logo" class="timeline-image">
+                        <img src="./images/hero.jpeg" alt="Hero logo" class="timeline-image">
                         <div class="timeline-description">
-                            description
+                            Engineered and optimized vehicle prototypes, applying DFM principles and GD&T to enhance product readiness and production efficiency.
                             <br><a href="./all-companies-info/hero.html" class="read-more">Read More</a>
                         </div>
                     </div>
@@ -744,9 +1008,9 @@
                             <div class="timeline-location">Pune, India</div>
                             <h3 class="timeline-title">Intern</h3>
                         </div>
-                        <img src="./images/agrostar.jpeg" alt="agrostar img" class="timeline-image">
+                        <img src="./images/agrostar.jpeg" alt="AgroStar" class="timeline-image">
                         <div class="timeline-description">
-                            description.
+                            Built a company-wide dashboard to track sales and churn rates to forecast future demand and improve customer retention with dedicated offers.
                             <br><a href="./all-companies-info/agrostar.html" class="read-more">Read More</a>
                         </div>
                     </div>
@@ -761,9 +1025,9 @@
                             <div class="timeline-location">Trivandrum, India</div>
                             <h3 class="timeline-title">Intern</h3>
                         </div>
-                        <img src="./images/isro.jpeg" alt="isro logo" class="timeline-image">
+                        <img src="./images/isro.jpeg" alt="ISRO logo" class="timeline-image">
                         <div class="timeline-description">
-                            Analyzed and optimized the performance of a vibratory gyroscope, reducing error to 0.07% through algorithm development
+                            Analyzed and optimized the performance of a vibratory gyroscope, reducing vibrational frequency error to 0.07%
                             <br><a href="./all-companies-info/isro.html" class="read-more">Read More</a>
                         </div>
                     </div>
@@ -772,7 +1036,7 @@
 
             <!-- Resume Download Section -->
             <div class="resume-link-section">
-                <h3 style="margin-bottom: 20px; color: #333;">Want to see more?</h3>
+                <h3 style="margin-bottom: 20px; color: #e0e0e0;">Want to see more?</h3>
                 <a href="./images/resume.pdf" class="resume-download-btn">
                     📄 View Full Resume
                 </a>
@@ -780,138 +1044,302 @@
         </div>
     </section>
 
-    <!-- Skills Section -->
+    <!-- Skills Section - Infinite Carousel -->
     <section id="skills">
-      <h2 class="section-title">Skills</h2>
-      <div class="skills-grid-wrapper">
-        <div class="skills-row">
-          <div class="accordion-item">
-            <div class="accordion-header">Design Fundamentals</div>
-            <div class="accordion-content">
-              <ul>
-                <li>Machine Design</li>
-                <li>GD&T</li>
-                <li>Design for Manufacturing (DFM)</li>
-                <li>Design for Assembly (DFA)</li>
-                <li>Tolerance Stack-Up Analysis</li>
-                <li>Fits & Clearances</li>
-                <li>Failure Mode Analysis</li>
-                <li>Material Selection</li>
-              </ul>
+        <h2 class="section-title">Skills</h2>
+        <div class="carousel-container">
+            <div class="carousel-track" id="skillsCarousel">
+                <!-- First set of cards -->
+                <div class="skill-card">
+                    <div class="skill-header">Design Fundamentals</div>
+                    <div class="skill-content">
+                        <ul>
+                            <li>Machine Design</li>
+                            <li>GD&T</li>
+                            <li>Design for Manufacturing (DFM)</li>
+                            <li>Design for Assembly (DFA)</li>
+                            <li>Tolerance Stack-Up Analysis</li>
+                            <li>Fits & Clearances</li>
+                            <li>Failure Mode Analysis</li>
+                            <li>Material Selection</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="skill-card">
+                    <div class="skill-header">Design & Simulation Software</div>
+                    <div class="skill-content">
+                        <ul>
+                            <li>SolidWorks</li>
+                            <li>CATIA V5</li>
+                            <li>AutoCAD</li>
+                            <li>DraftSight</li>
+                            <li>Ansys Workbench</li>
+                            <li>Fusion 360</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="skill-card">
+                    <div class="skill-header">Programming & Data Tools</div>
+                    <div class="skill-content">
+                        <ul>
+                            <li>MATLAB</li>
+                            <li>Arduino</li>
+                            <li>Excel VBA</li>
+                            <li>R Programming</li>
+                            <li>SQL</li>
+                            <li>Tableau</li>
+                            <li>Git</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="skill-card">
+                    <div class="skill-header">Manufacturing</div>
+                    <div class="skill-content">
+                        <ul>
+                            <li>Sheet Metal Design</li>
+                            <li>Stamping and Die Design</li>
+                            <li>Prototyping & Validation</li>
+                            <li>3D Printing</li>
+                            <li>Engineering Change Orders (ECOs)</li>
+                            <li>High Volume Manufacturing</li>
+                            <li>Lean Manufacturing</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="skill-card">
+                    <div class="skill-header">Testing & Validation</div>
+                    <div class="skill-content">
+                        <ul>
+                            <li>Prototype Testing</li>
+                            <li>Performance Validation</li>
+                            <li>Quality Control</li>
+                            <li>Durability Testing</li>
+                            <li>Load Testing</li>
+                            <li>Environmental Testing</li>
+                            <li>Compliance Testing</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="skill-card">
+                    <div class="skill-header">Project Management</div>
+                    <div class="skill-content">
+                        <ul>
+                            <li>Cross-functional Collaboration</li>
+                            <li>Timeline Management</li>
+                            <li>Cost Optimization</li>
+                            <li>Risk Assessment</li>
+                            <li>Documentation</li>
+                            <li>Vendor Management</li>
+                            <li>Process Improvement</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Duplicate set for seamless infinite scroll -->
+                <div class="skill-card">
+                    <div class="skill-header">Design Fundamentals</div>
+                    <div class="skill-content">
+                        <ul>
+                            <li>Machine Design</li>
+                            <li>GD&T</li>
+                            <li>Design for Manufacturing (DFM)</li>
+                            <li>Design for Assembly (DFA)</li>
+                            <li>Tolerance Stack-Up Analysis</li>
+                            <li>Fits & Clearances</li>
+                            <li>Failure Mode Analysis</li>
+                            <li>Material Selection</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="skill-card">
+                    <div class="skill-header">Design & Simulation Software</div>
+                    <div class="skill-content">
+                        <ul>
+                            <li>SolidWorks</li>
+                            <li>CATIA V5</li>
+                            <li>AutoCAD</li>
+                            <li>DraftSight</li>
+                            <li>Ansys Workbench</li>
+                            <li>Fusion 360</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="skill-card">
+                    <div class="skill-header">Programming & Data Tools</div>
+                    <div class="skill-content">
+                        <ul>
+                            <li>MATLAB</li>
+                            <li>Arduino</li>
+                            <li>Excel VBA</li>
+                            <li>R Programming</li>
+                            <li>SQL</li>
+                            <li>Tableau</li>
+                            <li>Git</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="skill-card">
+                    <div class="skill-header">Manufacturing</div>
+                    <div class="skill-content">
+                        <ul>
+                            <li>Sheet Metal Design</li>
+                            <li>Stamping and Die Design</li>
+                            <li>Prototyping & Validation</li>
+                            <li>3D Printing</li>
+                            <li>Engineering Change Orders (ECOs)</li>
+                            <li>High Volume Manufacturing</li>
+                            <li>Lean Manufacturing</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="skill-card">
+                    <div class="skill-header">Testing & Validation</div>
+                    <div class="skill-content">
+                        <ul>
+                            <li>Prototype Testing</li>
+                            <li>Performance Validation</li>
+                            <li>Quality Control</li>
+                            <li>Durability Testing</li>
+                            <li>Load Testing</li>
+                            <li>Environmental Testing</li>
+                            <li>Compliance Testing</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="skill-card">
+                    <div class="skill-header">Project Management</div>
+                    <div class="skill-content">
+                        <ul>
+                            <li>Cross-functional Collaboration</li>
+                            <li>Timeline Management</li>
+                            <li>Cost Optimization</li>
+                            <li>Risk Assessment</li>
+                            <li>Documentation</li>
+                            <li>Vendor Management</li>
+                            <li>Process Improvement</li>
+                        </ul>
+                    </div>
+                </div>
             </div>
-          </div>
-    
-          <div class="accordion-item">
-            <div class="accordion-header">Design & Simulation Software</div>
-            <div class="accordion-content">
-              <ul>
-                <li>SolidWorks</li>
-                <li>CATIA V5</li>
-                <li>AutoCAD</li>
-                <li>DraftSight</li> 
-                <li>Ansys Workbench</li>
-                <li>Fusion 360</li>
-              </ul>
-            </div>
-          </div>
-    
-          <div class="accordion-item">
-            <div class="accordion-header">Programming & Data Tools</div>
-            <div class="accordion-content">
-              <ul>
-                <li>MATLAB</li>
-                <li>Arduino</li>
-                <li>Excel VBA</li>
-                <li>R Programming</li>
-                <li>SQL</li>
-                <li>Tableau</li>
-                <li>Git</li>
-              </ul>
-            </div>
-          </div>
-    
-          <div class="accordion-item">
-            <div class="accordion-header">Manufacturing</div>
-            <div class="accordion-content">
-              <ul>
-                <li>Sheet Metal Design</li>
-                <li>Stamping and Die Design</li>
-                <li>Prototyping & Validation</li>
-                <li>3D Printing</li>
-                <li>Engineering Change Orders (ECOs)</li>
-                <li>High Volume Manufacturing</li>
-                <li>Lean Manufacturing</li>
-              </ul>
-            </div>
-          </div>
-    
-          <div class="accordion-item">
-            <div class="accordion-header">Testing & Validation</div>
-            <div class="accordion-content">
-              <ul>
-                <li>FEA & Structural Analysis</li>
-                <li>Tensile / Torsion Testing</li>
-                <li>Root Cause Analysis</li>
-              </ul>
-            </div>
-          </div>
         </div>
-      </div>
+        <div class="touch-hint">Swipe to explore skills →</div>
     </section>
 
-    
     <!-- Education Section -->
     <section id="education">
-        <div class="projects-overlay"></div>
         <div class="container">
-            <h2 class="section-title">EDUCATION</h2>
-            <div class="projects-grid">
-                <div class="project-card">
-                    
-                    <div class="project-image">
-                        <img src="./images/uw.jpeg" alt="University of Washington" style="width: 100%; height: 100%; object-fit: cover;">
-                    </div>
-                    <div class="project-content">
-                        <h3>University of Washington</h3>
-                        <p>MS in Mechanical Engineering</p>
-                        <a href="./education/uw.html" class="read-more" style="text-decoration: none;">Read more</a>
+            <h2 class="section-title">Education</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-dot" style="background: #4285f4;"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-header">
+                            <div class="timeline-date">2023 - 2025</div>
+                            <div class="timeline-location">Seattle, WA</div>
+                            <h3 class="timeline-title">Master of Science in Mechanical Engineering</h3>
+                        </div>
+                        <div class="timeline-description" style="padding: 20px 25px;">
+                            University of Washington, Seattle
+                            <br>Focus: Advanced Design and Manufacturing
+                        </div>
                     </div>
                 </div>
-    
-                <div class="project-card">
-                    <div class="project-image">
-                        <img src="./images/bits.jpeg" alt="NIT Trichy" style="width: 100%; height: 100%; object-fit: cover;">
-                    </div>
-                    <div class="project-content">
-                        <h3>Birla Institute of Technology and Science, Pilani</h3>
-                        <p>BE Mechanical Engineering</p>
-                        <a href="./education/bits.html" class="read-more" style="text-decoration: none;">Read more</a>
+
+                <div class="timeline-item">
+                    <div class="timeline-dot" style="background: #1e40af;"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-header">
+                            <div class="timeline-date">2016 - 2020</div>
+                            <div class="timeline-location">India</div>
+                            <h3 class="timeline-title">Bachelor of Technology in Mechanical Engineering</h3>
+                        </div>
+                        <div class="timeline-description" style="padding: 20px 25px;">
+                            National Institute of Technology
+                            <br>CGPA: 8.5/10
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-    
 
+    <!-- Projects Section -->
+    <section id="projects">
+        <div class="container">
+            <h2 class="section-title">Featured Projects</h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-image">
+                        <span>Aerial Platform Design</span>
+                    </div>
+                    <div class="project-content">
+                        <h3>Cost-Optimized Aerial Platform Components</h3>
+                        <p>Redesigned key mechanical components for aerial work platforms, achieving 15% cost reduction while maintaining safety standards and improving manufacturability.</p>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-image">
+                        <span>Vehicle Prototyping</span>
+                    </div>
+                    <div class="project-content">
+                        <h3>EV Prototype Development</h3>
+                        <p>Led the mechanical design and validation of electric vehicle prototypes, implementing DFM principles and GD&T standards for production readiness.</p>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-image">
+                        <span>Data Analytics Dashboard</span>
+                    </div>
+                    <div class="project-content">
+                        <h3>Sales Analytics Platform</h3>
+                        <p>Built comprehensive dashboard tracking sales metrics and customer churn rates, enabling data-driven decision making and targeted retention strategies.</p>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-image">
+                        <span>Gyroscope Optimization</span>
+                    </div>
+                    <div class="project-content">
+                        <h3>Vibratory Gyroscope Enhancement</h3>
+                        <p>Analyzed and optimized gyroscope performance at ISRO, reducing vibrational frequency error to 0.07% through advanced mechanical design modifications.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
     <!-- Contact Section -->
     <section id="contact">
         <div class="container">
             <div class="contact-content">
-                <h2 class="section-title">Contact</h2>
-                <p>Ready to connect?</p>
+                <h2 class="section-title">Get In Touch</h2>
+                <p>Ready to collaborate on innovative engineering solutions? Let's connect and explore opportunities together.</p>
+                
                 <div class="contact-info">
                     <div class="contact-item">
-                        <h3>Email</h3>
-                        <p>vinayakda1@gmail.com</p>
+                        <h4>📧 Email</h4>
+                        <p><a href="mailto:vinayakda1@gmail.com">vinayakda1@gmail.com</a></p>
                     </div>
                     <div class="contact-item">
-                        <h3>Phone</h3>
-                        <p>+1 (206) 730-8334</p>
+                        <h4>💼 LinkedIn</h4>
+                        <p><a href="https://linkedin.com/in/vinayak-das" target="_blank">linkedin.com/in/vinayak-das</a></p>
                     </div>
                     <div class="contact-item">
-                        <h3>LinkedIn</h3>
-                        <p>https://www.linkedin.com/in/vinayak-das/</p>
+                        <h4>📍 Location</h4>
+                        <p>Seattle, WA</p>
                     </div>
                 </div>
             </div>
@@ -919,12 +1347,10 @@
     </section>
 
     <script>
-        // Navbar scroll effect and parallax background
-        window.addEventListener('scroll', () => {
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
             const navbar = document.getElementById('navbar');
             const scrollProgress = document.getElementById('scrollProgress');
-            const projectsBackground = document.getElementById('projectsBackground');
-            const projectsSection = document.getElementById('projects');
             
             if (window.scrollY > 50) {
                 navbar.classList.add('scrolled');
@@ -933,26 +1359,30 @@
             }
 
             // Update scroll progress
-            const scrolled = (window.pageYOffset / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
-            scrollProgress.style.width = scrolled + '%';
+            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            scrollProgress.style.width = scrolled + "%";
+        });
 
-            // Parallax effect for projects background
-            const projectsRect = projectsSection.getBoundingClientRect();
-            const windowHeight = window.innerHeight;
-            
-            // Show background when projects section is in viewport
-            if (projectsRect.top < windowHeight && projectsRect.bottom > 0) {
-                projectsBackground.style.opacity = '1';
-                // Create parallax effect
-                const scrollOffset = window.pageYOffset;
-                const parallaxSpeed = 0.5;
-                projectsBackground.style.transform = `translateY(${scrollOffset * parallaxSpeed}px)`;
-            } else {
-                projectsBackground.style.opacity = '0';
+        // Mobile navigation toggle
+        const mobileNavToggle = document.getElementById('mobileNavToggle');
+        const navLinks = document.getElementById('navLinks');
+
+        mobileNavToggle.addEventListener('click', function() {
+            navLinks.classList.toggle('mobile-open');
+            this.textContent = navLinks.classList.contains('mobile-open') ? '✕' : '☰';
+        });
+
+        // Close mobile nav when clicking on links
+        navLinks.addEventListener('click', function(e) {
+            if (e.target.tagName === 'A') {
+                navLinks.classList.remove('mobile-open');
+                mobileNavToggle.textContent = '☰';
             }
         });
 
-        // Smooth scroll for navigation links
+        // Smooth scrolling for navigation links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
@@ -966,7 +1396,51 @@
             });
         });
 
-        // Intersection Observer for animations
+        // Skills carousel touch support for mobile
+        let isDown = false;
+        let startX;
+        let scrollLeft;
+        const carousel = document.getElementById('skillsCarousel');
+
+        carousel.addEventListener('mousedown', (e) => {
+            isDown = true;
+            carousel.style.cursor = 'grabbing';
+            startX = e.pageX - carousel.offsetLeft;
+            scrollLeft = carousel.scrollLeft;
+        });
+
+        carousel.addEventListener('mouseleave', () => {
+            isDown = false;
+            carousel.style.cursor = 'grab';
+        });
+
+        carousel.addEventListener('mouseup', () => {
+            isDown = false;
+            carousel.style.cursor = 'grab';
+        });
+
+        carousel.addEventListener('mousemove', (e) => {
+            if (!isDown) return;
+            e.preventDefault();
+            const x = e.pageX - carousel.offsetLeft;
+            const walk = (x - startX) * 2;
+            carousel.scrollLeft = scrollLeft - walk;
+        });
+
+        // Touch events for mobile
+        carousel.addEventListener('touchstart', (e) => {
+            startX = e.touches[0].pageX - carousel.offsetLeft;
+            scrollLeft = carousel.scrollLeft;
+        });
+
+        carousel.addEventListener('touchmove', (e) => {
+            if (!startX) return;
+            const x = e.touches[0].pageX - carousel.offsetLeft;
+            const walk = (x - startX) * 2;
+            carousel.scrollLeft = scrollLeft - walk;
+        });
+
+        // Intersection Observer for fade-in animations
         const observerOptions = {
             threshold: 0.1,
             rootMargin: '0px 0px -50px 0px'
@@ -981,23 +1455,47 @@
             });
         }, observerOptions);
 
-        // Observe all project cards and timeline items
-        document.querySelectorAll('.project-card, .timeline-item').forEach(card => {
-            card.style.opacity = '0';
-            card.style.transform = 'translateY(30px)';
-            card.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
-            observer.observe(card);
+        // Observe timeline items and project cards
+        document.querySelectorAll('.timeline-item, .project-card').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(el);
         });
 
-        // Open resume in new tab/window
-        function openResume() {
-            // Replace 'resume.pdf' with the actual path to Thanh's resume PDF
-            window.open('resume.pdf', '_blank');
+        // Pause carousel animation on hover for better UX
+        const skillCards = document.querySelectorAll('.skill-card');
+        skillCards.forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                carousel.style.animationPlayState = 'paused';
+            });
+            card.addEventListener('mouseleave', () => {
+                carousel.style.animationPlayState = 'running';
+            });
+        });
+
+        // Enhanced mobile experience - adjust carousel speed based on screen size
+        function adjustCarouselSpeed() {
+            const screenWidth = window.innerWidth;
+            let duration = '30s';
+            
+            if (screenWidth <= 480) {
+                duration = '20s';
+            } else if (screenWidth <= 768) {
+                duration = '25s';
+            }
+            
+            carousel.style.animationDuration = duration;
         }
-        
-        
 
+        // Call on load and resize
+        adjustCarouselSpeed();
+        window.addEventListener('resize', adjustCarouselSpeed);
 
+        // Performance optimization - reduce animations on low-end devices
+        if (navigator.hardwareConcurrency && navigator.hardwareConcurrency <= 2) {
+            document.documentElement.style.setProperty('--reduced-motion', 'reduce');
+        }
     </script>
 </body>
 </html>
