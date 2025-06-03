@@ -488,6 +488,8 @@
         #contact {
             background: linear-gradient(135deg, #1a1a1a, #121212);
             color: white;
+            padding: 60px 0;
+            min-height: auto; 
         }
 
         .contact-content {
@@ -499,18 +501,26 @@
         .contact-info {
             display: flex;
             justify-content: center;
-            gap: 50px;
-            margin-top: 40px;
+            gap: 15px;
+            margin-top: 20px;
             flex-wrap: wrap;
         }
 
         .contact-item {
             background: rgba(255, 255, 255, 0.05);
-            padding: 20px;
-            border-radius: 10px;
+            padding: 15px 12px;
+            border-radius: 8px;
             backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.05);
             transition: transform 0.3s ease;
+            flex: 1;
+            max-width: 210px;
+            min-width: 180px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            height: 85px;
         }
 
         .contact-item:hover {
@@ -522,10 +532,51 @@
             color: #4ecdc4;
             text-decoration: none;
             transition: color 0.3s ease;
+            display: inline-block;
+            word-break: break-word;
+            hyphens: auto;
+            font-size: 0.9rem;
+            margin: 0;
+            line-height: 1.4;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .contact-item p {
+            margin: 0;
+            font-size: 0.9rem;
+            line-height: 1.4;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .contact-item h4 {
+            font-size: 0.9rem;
+            font-weight: 500;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #999;
         }
 
         .contact-item a:hover {
             color: #ff6b6b;
+        }
+
+        .contact-item:nth-child(2) {
+            min-width: 230px; /* Extra width for LinkedIn card */
+        }
+
+        /* Email specific width */
+        .contact-item:nth-child(1) {
+            min-width: 220px; /* Adjusted width for email */
+        }
+
+        /* Location specific width */
+        .contact-item:nth-child(3) {
+            min-width: 150px; /* Can be narrower */
         }
 
         /* Skills Section - Infinite Carousel */
@@ -707,6 +758,7 @@
             .contact-info {
                 flex-direction: column;
                 align-items: center;
+                flex-wrap: wrap;
                 gap: 20px;
             }
 
@@ -977,7 +1029,7 @@
                         <img src="./images/genie.jpeg" class="timeline-image" alt="Genie">
                         <div class="timeline-description">
                             Drove mechanical design improvements for aerial platforms, focusing on cost reduction, manufacturability, and supplier collaboration.
-                            <br><a href="./all-companies-info/genie.html" class="read-more">Read More</a>
+                            <br><a href="projects.html?filter=genie" class="read-more" target="_blank">Read More</a>
                         </div>
                     </div>
                 </div>
@@ -994,7 +1046,7 @@
                         <img src="./images/hero.jpeg" alt="Hero logo" class="timeline-image">
                         <div class="timeline-description">
                             Engineered and optimized vehicle prototypes, applying DFM principles and GD&T to enhance product readiness and production efficiency.
-                            <br><a href="./all-companies-info/hero.html" class="read-more">Read More</a>
+                            <br><a href="projects.html?filter=hero" class="read-more" target="_blank">Read More</a>
                         </div>
                     </div>
                 </div>
@@ -1011,7 +1063,7 @@
                         <img src="./images/agrostar.jpeg" alt="AgroStar" class="timeline-image">
                         <div class="timeline-description">
                             Built a company-wide dashboard to track sales and churn rates to forecast future demand and improve customer retention with dedicated offers.
-                            <br><a href="./all-companies-info/agrostar.html" class="read-more">Read More</a>
+                            <br><a href="projects.html?filter=other" class="read-more" target="_blank">Read More</a>
                         </div>
                     </div>
                 </div>
@@ -1028,7 +1080,7 @@
                         <img src="./images/isro.jpeg" alt="ISRO logo" class="timeline-image">
                         <div class="timeline-description">
                             Analyzed and optimized the performance of a vibratory gyroscope, reducing vibrational frequency error to 0.07%
-                            <br><a href="./all-companies-info/isro.html" class="read-more">Read More</a>
+                            <br><a href="projects.html?filter=other" class="read-more" target="_blank">Read More</a>
                         </div>
                     </div>
                 </div>
@@ -1250,7 +1302,7 @@
                         </div>
                         <div class="timeline-description" style="padding: 20px 25px;">
                             University of Washington, Seattle
-                            <br>GPA 3.81/4.0
+                            <br>GPA: 3.81/4.0
                         </div>
                     </div>
                 </div>
@@ -1261,11 +1313,11 @@
                         <div class="timeline-header">
                             <div class="timeline-date">2016 - 2020</div>
                             <div class="timeline-location">India</div>
-                            <h3 class="timeline-title">Bachelor of Technology in Mechanical Engineering</h3>
+                            <h3 class="timeline-title">Bachelor of Engineering in Mechanical Engineering</h3>
                         </div>
                         <div class="timeline-description" style="padding: 20px 25px;">
                             BITS Pilani
-                            <br>CGPA: 8.5/10
+                            <br>CGPA: 8.8/10
                         </div>
                     </div>
                 </div>
@@ -1278,7 +1330,7 @@
         <div class="container">
             <h2 class="section-title">Featured Projects</h2>
             <div class="projects-grid">
-                <div class="project-card">
+                <div class="project-card" onclick="window.open('projects.html?filter=genie','_blank')">
                     <div class="project-image">
                         <span>Aerial Platform Design</span>
                     </div>
@@ -1287,8 +1339,7 @@
                         <p>Redesigned key mechanical components for aerial work platforms, achieving 15% cost reduction while maintaining safety standards and improving manufacturability.</p>
                     </div>
                 </div>
-
-                <div class="project-card">
+                <div class="project-card" onclick="window.open('projects.html?filter=hero','_blank')">
                     <div class="project-image">
                         <span>Vehicle Prototyping</span>
                     </div>
@@ -1297,8 +1348,7 @@
                         <p>Led the mechanical design and validation of electric vehicle prototypes, implementing DFM principles and GD&T standards for production readiness.</p>
                     </div>
                 </div>
-
-                <div class="project-card">
+                <div class="project-card" onclick="window.open('projects.html?filter=other','_blank')">
                     <div class="project-image">
                         <span>Data Analytics Dashboard</span>
                     </div>
@@ -1307,8 +1357,7 @@
                         <p>Built comprehensive dashboard tracking sales metrics and customer churn rates, enabling data-driven decision making and targeted retention strategies.</p>
                     </div>
                 </div>
-
-                <div class="project-card">
+                <div class="project-card" onclick="window.open('projects.html?filter=student','_blank')">
                     <div class="project-image">
                         <span>Gyroscope Optimization</span>
                     </div>
@@ -1321,6 +1370,8 @@
         </div>
     </section>
 
+
+
     <!-- Contact Section -->
     <section id="contact">
         <div class="container">
@@ -1330,15 +1381,15 @@
                 
                 <div class="contact-info">
                     <div class="contact-item">
-                        <h4>📧 Email</h4>
+                        <h4>Email</h4>
                         <p><a href="mailto:vinayakda1@gmail.com">vinayakda1@gmail.com</a></p>
                     </div>
                     <div class="contact-item">
-                        <h4>💼 LinkedIn</h4>
+                        <h4>LinkedIn</h4>
                         <p><a href="https://linkedin.com/in/vinayak-das" target="_blank">linkedin.com/in/vinayak-das</a></p>
                     </div>
                     <div class="contact-item">
-                        <h4>📍 Location</h4>
+                        <h4>Location</h4>
                         <p>Seattle, WA</p>
                     </div>
                 </div>
@@ -1498,4 +1549,4 @@
         }
     </script>
 </body>
-</html>
+</html> 

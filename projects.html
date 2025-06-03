@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Projects – Vinayak Das</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #e0e0e0;
+            overflow-x: hidden;
+            background-color: #121212;
+        }
+        .navbar {
+            position: fixed; top: 0; right: 0; z-index: 1000;
+            padding: 20px 40px; border-radius: 0 0 0 20px;
+            background: none; width: auto;
+            transition: background 0.6s cubic-bezier(0.42,0,0.58,1), width 0.6s, left 0.6s, right 0.6s, border-radius 0.6s, padding 0.6s;
+            display: flex; justify-content: flex-end; align-items: center; box-sizing: border-box;
+        }
+        .navbar.scrolled {
+            background: rgba(10, 16, 26, 0.85); backdrop-filter: blur(12px); padding: 15px 0;
+            left: 0; right: 0; width: 100vw; border-radius: 0; box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            display: flex; justify-content: center; align-items: center;
+        }
+        .navbar.scrolled .nav-links { justify-content: center !important; }
+        .nav-links { display: flex; list-style: none; gap: 30px; justify-content: flex-end; width: 100%; }
+        .nav-links a { color: white; text-decoration: none; font-weight: 500; font-size: 16px; transition: all 0.3s; position: relative; }
+        .nav-links a:hover { color: #ff6b6b; transform: translateY(-2px);}
+        .nav-links a::after {
+            content: ''; position: absolute; bottom: -5px; left: 0; width: 0; height: 2px;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4); transition: width 0.3s;
+        }
+        .nav-links a:hover::after { width: 100%; }
+        .mobile-nav-toggle {
+            display: none; background: none; border: none; color: white; font-size: 1.5rem;
+            cursor: pointer; z-index: 1001;
+        }
+        .scroll-indicator { position: fixed; top: 0; left: 0; width: 100%; height: 4px; background: rgba(255,255,255,0.1); z-index: 1001; }
+        .scroll-progress { height: 100%; background: linear-gradient(45deg, #ff6b6b, #4ecdc4); width: 0%; transition: width 0.1s;}
+        .projects-header {
+            position: relative;
+            width: 100vw;
+            left: 50%;
+            right: 50%;
+            margin-left: -50vw;
+            margin-right: -50vw;
+            padding: 110px 0 0 0;
+            text-align: center;
+            background: 
+                linear-gradient(rgba(18,18,18,0.5), rgba(18,18,18,0.75)),   /* a gradient overlay for readability */
+                url('./images/your-bg-image.jpg') center/cover no-repeat;
+            /* The gradient helps text stand out over the image */
+        }
+
+        .projects-header h1 {
+            font-size: 2.6rem;
+            font-weight: bold;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1);
+            background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent; color: transparent;
+            margin-bottom: 12px;
+        }
+        .projects-intro {
+            color: #c0e6e6;
+            font-size: 1.15rem;
+            max-width: 650px;
+            margin: 0 auto 28px auto;
+            padding: 20px;
+        }
+        .filter-bar {
+            text-align: center;
+            margin: 32px 0 18px 0;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 12px 20px; /* 12px vertical, 20px horizontal gap between buttons */
+        }
+        .filter-btn {
+            background: #191e24;
+            border: 1px solid #2d3742;
+            color: #c0e6e6;
+            padding: 12px 24px;
+            margin: 0;
+            border-radius: 30px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.2s;
+        }
+        .filter-btn.active,
+        .filter-btn:hover {
+            background: linear-gradient(45deg,#ff6b6b,#4ecdc4);
+            color: #fff;
+            border: none;
+        }
+        .project-list {
+        max-width: 1050px;
+        margin: 0 auto 60px auto;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 36px 12px;    /* vertical gap, then horizontal gap */
+        justify-content: center;
+        padding: 0 12px;   /* This gives you edge padding on all screens */
+        box-sizing: border-box;
+    }
+
+        .project-card {
+            flex: 1 1 320px;      /* Grow and shrink, base width 320px */
+            max-width: 400px;     /* Never bigger than 400px */
+            min-width: 260px;     /* Never smaller than 260px, can tweak */
+            width: 100%;          /* Always fill available space */
+            background: #1a1a1a;
+            border-radius: 15px;
+            box-shadow: 0 4px 20px #0003;
+            overflow: hidden;
+            cursor: pointer;
+            transition: .2s;
+            display: flex;
+            flex-direction: column;
+            margin: 0 auto;
+        }
+
+
+        .project-card:hover { transform: translateY(-5px) scale(1.03);}
+        .project-title {
+            font-size: 1.18rem;
+            font-weight: bold;
+            margin: 20px 0 10px 0;
+            text-align: center;
+            color: #93f9f9;
+        }
+        .project-brief { font-size: 1rem; color: #c0e6e6; padding: 0 20px 20px 20px; text-align: center;}
+        /* Contact Section */
+        #contact {
+            background: linear-gradient(135deg, #1a1a1a, #121212); color: white; padding: 60px 0 40px 0; min-height: auto;
+        }
+        .contact-content { text-align: center; max-width: 600px; margin: 0 auto; }
+        .contact-info {
+            display: flex; justify-content: center; gap: 15px; margin-top: 20px; flex-wrap: wrap;
+        }
+        .contact-item {
+            background: rgba(255,255,255,0.05); padding: 15px 12px; border-radius: 8px; backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.05); transition: transform 0.3s; flex: 1; max-width: 210px; min-width: 180px; text-align: center; display: flex; flex-direction: column; justify-content: center; height: 85px;
+        }
+        .contact-item:hover { transform: translateY(-5px); background: rgba(255,255,255,0.08);}
+        .contact-item a { color: #4ecdc4; text-decoration: none; transition: color 0.3s; display: inline-block; word-break: break-word; hyphens: auto; font-size: 0.9rem; margin: 0; line-height: 1.4; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .contact-item a:hover { color: #ff6b6b;}
+        .contact-item h4 { font-size: 0.9rem; font-weight: 500; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 1px; color: #999;}
+        .contact-item p { margin: 0; font-size: 0.9rem; line-height: 1.4; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;}
+        .contact-item:nth-child(2) { min-width: 230px;}
+        .contact-item:nth-child(1) { min-width: 220px;}
+        .contact-item:nth-child(3) { min-width: 150px;}
+        @media (max-width: 768px) {
+            .navbar { padding: 15px 20px; width: 100vw; left: 0; right: 0; top: 0; border-radius: 0 0 20px 20px; background: rgba(10,10,10,0.9); z-index: 1000; }
+            .nav-links { gap: 15px; }
+            .nav-links a { font-size: 14px; }
+            .projects-header { padding: 80px 0 0 0;}
+            .project-list { gap: 24px;}
+            .mobile-nav-toggle { display: block; position: fixed; top: 20px; right: 20px; z-index: 1002; }
+            .nav-links { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100vh; background: rgba(0, 0, 0, 0.95); backdrop-filter: blur(10px); flex-direction: column; justify-content: center; align-items: center; gap: 40px; }
+            .nav-links.mobile-open { display: flex;}
+            .nav-links a { font-size: 1.5rem;}
+            .contact-info { flex-direction: column; align-items: center; gap: 20px;}
+        }
+        @media (max-width: 480px) {
+            .projects-header { padding: 56px 0 0 0;}
+            .project-list { gap: 14px;}
+        }
+
+        .project-image {
+            height: 200px;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+        .project-image img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: cover;
+            border-radius: 0;
+            box-shadow: none;
+            background: none;
+            display: block;
+        }
+
+        @media (max-width: 768px) {
+            .navbar,
+            .navbar.scrolled {
+                background: transparent !important;
+                backdrop-filter: none !important;
+                box-shadow: none !important;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .project-list {
+                padding: 0 4vw;
+            }
+            .project-card {
+                min-width: 0;
+                max-width: 100%;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .projects-header {
+                padding: 60px 0 0 0;
+                background-position: center top;
+            }
+        }
+
+    </style>
+</head>
+<body>
+    <!-- Scroll Progress Indicator -->
+    <div class="scroll-indicator">
+        <div class="scroll-progress" id="scrollProgress"></div>
+    </div>
+    <!-- Mobile Navigation Toggle -->
+    <button class="mobile-nav-toggle" id="mobileNavToggle">☰</button>
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <ul class="nav-links" id="navLinks">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="index.html#resume">Resume</a></li>
+            <li><a href="index.html#skills">Skills</a></li>
+            <li><a href="projects.html">Projects</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+    <!-- Projects Header & Intro -->
+    <div class="projects-header">
+        <h1>Project Portfolio</h1>
+        <div class="projects-intro">
+            <!-- You can edit this intro to describe your projects: -->
+            Explore featured engineering projects categorized by company and experience.  
+            Use the filters below to discover work done at Genie, Hero MotoCorp, as an intern, and as a student.
+        </div>
+    </div>
+    <!-- Filter bar -->
+    <div class="filter-bar">
+        <button class="filter-btn active" data-filter="all">All</button>
+        <button class="filter-btn" data-filter="genie">Genie projects</button>
+        <button class="filter-btn" data-filter="hero">Hero projects</button>
+        <button class="filter-btn" data-filter="other">Other intern projects</button>
+        <button class="filter-btn" data-filter="student">Student projects</button>
+    </div>
+    <!-- Project cards -->
+    <div class="project-list" id="projectList">
+        <!-- Genie -->
+        <div class="project-card" data-category="genie" onclick="window.open('project-genie-sheetmetal.html','_blank')">
+            <div class="project-image">
+                <img src="./images/project1.jpeg" alt="Aerial Platform Design">
+            </div>
+            <div class="project-title">Aerial Platform Cost-Reduction</div>
+            <div class="project-brief">Simplified and cost-optimized sheet metal design for Genie aerial lifts.</div>
+        </div>
+        <div class="project-card" data-category="genie" onclick="window.open('project-genie-hpu.html','_blank')">
+            <div class="project-image">
+                <img src="./images/project1.jpeg" alt="Aerial Platform Design">
+            </div>            
+            <div class="project-title">Hydraulic Power Unit Redesign</div>
+            <div class="project-brief">Redesigned HPU assembly for cost savings and simplified assembly in Genie lifts.</div>
+        </div>
+        <!-- Hero -->
+        <div class="project-card" data-category="hero" onclick="window.open('project-hero-ev.html','_blank')">
+            <div class="project-image">
+                <img src="./images/project1.jpeg" alt="Aerial Platform Design">
+            </div>            
+            <div class="project-title">EV Prototype Development</div>
+            <div class="project-brief">End-to-end prototype build for electric two-wheeler at Hero MotoCorp.</div>
+        </div>
+        <div class="project-card" data-category="hero" onclick="window.open('project-hero-dfm.html','_blank')">
+            <div class="project-image">
+                <img src="./images/project1.jpeg" alt="Aerial Platform Design">
+            </div>            
+            <div class="project-title">Prototype DFM & GD&T</div>
+            <div class="project-brief">Applied advanced DFM and GD&T to optimize Hero vehicle components.</div>
+        </div>
+        <!-- Other Intern -->
+        <div class="project-card" data-category="other" onclick="window.open('project-agrostar-dashboard.html','_blank')">
+            <div class="project-image">
+                <img src="./images/project1.jpeg" alt="Aerial Platform Design">
+            </div>            
+            <div class="project-title">Sales Analytics Dashboard</div>
+            <div class="project-brief">Developed sales and churn analytics for AgroStar using Tableau/SQL.</div>
+        </div>
+        <!-- Student -->
+        <div class="project-card" data-category="student" onclick="window.open('project-isro-gyro.html','_blank')">
+            <div class="project-image">
+                <img src="./images/project1.jpeg" alt="Aerial Platform Design">
+            </div>            
+            <div class="project-title">Gyroscope Enhancement</div>
+            <div class="project-brief">Reduced vibrational frequency error in MEMS gyro (ISRO internship).</div>
+        </div>
+    </div>
+    <!-- Contact Section (always at end) -->
+    <section id="contact">
+        <div class="container">
+            <div class="contact-content">
+                <h2 class="section-title">Get In Touch</h2>
+                <p>Ready to collaborate on innovative engineering solutions? Let's connect and explore opportunities together.</p>
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <h4>Email</h4>
+                        <p><a href="mailto:vinayakda1@gmail.com">vinayakda1@gmail.com</a></p>
+                    </div>
+                    <div class="contact-item">
+                        <h4>LinkedIn</h4>
+                        <p><a href="https://linkedin.com/in/vinayak-das" target="_blank">linkedin.com/in/vinayak-das</a></p>
+                    </div>
+                    <div class="contact-item">
+                        <h4>Location</h4>
+                        <p>Seattle, WA</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <script>
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.getElementById('navbar');
+            const scrollProgress = document.getElementById('scrollProgress');
+            if (window.scrollY > 50) { navbar.classList.add('scrolled'); }
+            else { navbar.classList.remove('scrolled'); }
+            // Update scroll progress
+            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            scrollProgress.style.width = scrolled + "%";
+        });
+        // Mobile navigation toggle
+        const mobileNavToggle = document.getElementById('mobileNavToggle');
+        const navLinks = document.getElementById('navLinks');
+        mobileNavToggle.addEventListener('click', function() {
+            navLinks.classList.toggle('mobile-open');
+            this.textContent = navLinks.classList.contains('mobile-open') ? '✕' : '☰';
+        });
+        // Close mobile nav when clicking on links
+        navLinks.addEventListener('click', function(e) {
+            if (e.target.tagName === 'A') {
+                navLinks.classList.remove('mobile-open');
+                mobileNavToggle.textContent = '☰';
+            }
+        });
+        // Filter logic
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const cards = document.querySelectorAll('.project-card');
+        function setFilter(filter) {
+            filterBtns.forEach(btn => btn.classList.toggle('active', btn.dataset.filter === filter));
+            cards.forEach(card => {
+                if (filter === 'all' || card.dataset.category === filter) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => setFilter(btn.dataset.filter));
+        });
+        // Auto filter on URL param (for Read More/Project links)
+        const urlParams = new URLSearchParams(window.location.search);
+        if (urlParams.has('filter')) setFilter(urlParams.get('filter'));
+    </script>
+</body>
+</html>
