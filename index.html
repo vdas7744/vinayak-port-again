@@ -90,7 +90,7 @@
         }
 
         .nav-links a:hover {
-            color: #ff6b6b;
+            color: #bb4fff;
             transform: translateY(-2px);
         }
 
@@ -101,7 +101,7 @@
             left: 0;
             width: 0;
             height: 2px;
-            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            background: linear-gradient(45deg, #bb4fff, #3d82fc);
             transition: width 0.3s ease;
         }
 
@@ -159,7 +159,7 @@
             font-size: 5rem;
             font-weight: 700;
             margin-bottom: 30px;
-            background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1);
+            background: linear-gradient(45deg, #bb4fff, #3d82fc, #45b7d1);
             background-size: 200% 200%;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -193,7 +193,7 @@
 
         /* Section Styles */
         section {
-            padding: 100px 0;
+            padding: 40px 0;
             min-height: 100vh;
             display: flex;
             align-items: center;
@@ -222,7 +222,7 @@
             transform: translateX(-50%);
             width: 80px;
             height: 4px;
-            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            background: linear-gradient(45deg, #bb4fff, #3d82fc);
             border-radius: 2px;
         }
 
@@ -230,21 +230,21 @@
         #resume {
             background: #1a1a1a;
             color: #e0e0e0;
-            padding: 100px 0;
+            padding: 40px 0;
         }
 
         .company-logos {
             display: flex;
             justify-content: center;
             align-items: center;
-            gap: 10px;
+            gap: 20px;
             margin-bottom: 60px;
             flex-wrap: wrap;
         }
 
         .company-logo {
-            width: 60px;
-            height: 60px;
+            width: 80px;
+            height: 80px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -259,8 +259,8 @@
             transform: scale(1.1);
         }
         .company-logo img {
-            width: 60px;
-            height:60px;
+            width: 80px;
+            height:80px;
             border-radius: 50%;
             object-fit: cover;
             border: 2px solid #444;
@@ -376,7 +376,7 @@
         }
 
         .read-more {
-            color: #4ecdc4;
+            color: #3d82fc;
             font-weight: 500;
             cursor: pointer;
             text-decoration: none;
@@ -384,7 +384,7 @@
         }
 
         .read-more:hover {
-            color: #ff6b6b;
+            color: #bb4fff;
         }
 
         /* Resume Link Section */
@@ -454,7 +454,7 @@
 
         .project-image {
             height: 300px;
-            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            background: linear-gradient(45deg, #bb4fff, #3d82fc);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -488,20 +488,20 @@
         #contact {
             background: linear-gradient(135deg, #1a1a1a, #121212);
             color: white;
-            padding: 60px 0;
+            padding: 20px 0 40px 0;
             min-height: auto; 
         }
 
         .contact-content {
             text-align: center;
-            max-width: 600px;
+            max-width: 900px;
             margin: 0 auto;
         }
 
         .contact-info {
             display: flex;
             justify-content: center;
-            gap: 15px;
+            gap: 35px;
             margin-top: 20px;
             flex-wrap: wrap;
         }
@@ -529,7 +529,7 @@
         }
 
         .contact-item a {
-            color: #4ecdc4;
+            color: #3d82fc;
             text-decoration: none;
             transition: color 0.3s ease;
             display: inline-block;
@@ -562,7 +562,7 @@
         }
 
         .contact-item a:hover {
-            color: #ff6b6b;
+            color: #bb4fff;
         }
 
         .contact-item:nth-child(2) {
@@ -586,7 +586,8 @@
             flex-direction: column;
             align-items: center;
             min-height: auto;
-            padding: 80px 20px;
+            padding: 60px 20px;
+            padding-top: 40px;
             overflow: hidden;
         }
 
@@ -673,7 +674,7 @@
             content: '▸';
             position: absolute;
             left: 0;
-            color: #4ecdc4;
+            color: #3d82fc;
         }
 
         /* Education Section */
@@ -705,7 +706,7 @@
 
         .scroll-progress {
             height: 100%;
-            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            background: linear-gradient(45deg, #bb4fff, #3d82fc);
             width: 0%;
             transition: width 0.1s ease;
         }
@@ -997,7 +998,7 @@
     <!-- Experience Section -->
     <section id="resume">
         <div class="container">
-            <h2 class="section-title">EXPERIENCE</h2>
+            <h2 class="section-title">Experience</h2>
             
             <!-- Company Logos -->
             <div class="company-logos">
@@ -1284,11 +1285,10 @@
                 </div>
             </div>
         </div>
-        <div class="touch-hint">Swipe to explore skills →</div>
     </section>
 
     <!-- Education Section -->
-    <section id="education">
+    <!--<section id="education">
         <div class="container">
             <h2 class="section-title">Education</h2>
             <div class="timeline">
@@ -1323,52 +1323,92 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> -->
 
     <!-- Projects Section -->
     <section id="projects">
         <div class="container">
             <h2 class="section-title">Featured Projects</h2>
             <div class="projects-grid">
-                <div class="project-card" onclick="window.open('projects.html?filter=genie','_blank')">
+                <!-- Genie Sheet Metal Redesign -->
+                <div class="project-card" onclick="window.open('project-genie-shroud.html','_blank')">
                     <div class="project-image">
-                        <span>Aerial Platform Design</span>
+                        <img src="./images/genie_zboom.jpg" alt="Sheet Metal Shroud Redesign">
                     </div>
                     <div class="project-content">
-                        <h3>Cost-Optimized Aerial Platform Components</h3>
-                        <p>Redesigned key mechanical components for aerial work platforms, achieving 15% cost reduction while maintaining safety standards and improving manufacturability.</p>
+                        <h3>Sheet Metal Shroud Redesign – Genie</h3>
+                        <p>
+                            Led a major DFM/DFA overhaul of a Genie Z boom sheet-metal shroud—combined parts, eliminated welds, and reduced cost by $20k/year.
+                        </p>
                     </div>
                 </div>
-                <div class="project-card" onclick="window.open('projects.html?filter=hero','_blank')">
+                <!-- Hero EV ATV Project -->
+                <div class="project-card" onclick="window.open('project-hero-ev.html','_blank')">
                     <div class="project-image">
-                        <span>Vehicle Prototyping</span>
+                        <img src="./images/IMG_20230329_163438.jpg" alt="Electric ATV Conversion">
                     </div>
                     <div class="project-content">
-                        <h3>EV Prototype Development</h3>
-                        <p>Led the mechanical design and validation of electric vehicle prototypes, implementing DFM principles and GD&T standards for production readiness.</p>
+                        <h3>Electric ATV Conversion – Hero MotoCorp</h3>
+                        <p>
+                            Conceptualized and built Hero’s first electric ATV using EV scooter powertrain, custom drivetrain, and hands-on CAD-to-prototype execution.
+                        </p>
                     </div>
                 </div>
-                <div class="project-card" onclick="window.open('projects.html?filter=other','_blank')">
+                <!-- Genie Pump Project -->
+                <div class="project-card" onclick="window.open('project-genie-pump.html','_blank')">
                     <div class="project-image">
-                        <span>Data Analytics Dashboard</span>
+                        <img src="./images/genie_pump.jpg" alt="Hydraulic Pump Redesign">
                     </div>
                     <div class="project-content">
-                        <h3>Sales Analytics Platform</h3>
-                        <p>Built comprehensive dashboard tracking sales metrics and customer churn rates, enabling data-driven decision making and targeted retention strategies.</p>
+                        <h3>Hydraulic Pump Redesign & Release – Genie</h3>
+                        <p>
+                            Released new hydraulic pump and hose routing for Genie boom lifts—full ECO, supplier collaboration, and machine certification support.
+                        </p>
                     </div>
                 </div>
-                <div class="project-card" onclick="window.open('projects.html?filter=student','_blank')">
+                <!-- Touch Sensitive Gloves -->
+                <div class="project-card" onclick="window.open('project-student-musicglove.html','_blank')">
                     <div class="project-image">
-                        <span>Gyroscope Optimization</span>
+                        <img src="./images/cap_touch_proto.jpg" alt="Touch Sensitive Musical Gloves">
                     </div>
                     <div class="project-content">
-                        <h3>Vibratory Gyroscope Enhancement</h3>
-                        <p>Analyzed and optimized gyroscope performance at ISRO, reducing vibrational frequency error to 0.07% through advanced mechanical design modifications.</p>
+                        <h3>Touch Sensitive Musical Gloves – Finger-NOTE</h3>
+                        <p>
+                            Designed and built Arduino-powered gloves to play MIDI notes via touch sensors—showcasing physical computing and rapid prototyping.
+                        </p>
                     </div>
                 </div>
             </div>
+            <!-- Place this directly AFTER your .projects-grid closing div -->
+            <div style="width: 100%; text-align: center; margin-top: 28px;">
+            <a href="projects.html"
+                style="
+                    color: #bb4fff;
+                    font-size: 1.14rem;
+                    font-weight: 600;
+                    letter-spacing: 0.03em;
+                    text-decoration: none;
+                    background: linear-gradient(90deg, #bb4fff 40%, #3d82fc 100%);
+                    -webkit-background-clip: text;
+                    background-clip: text;
+                    -webkit-text-fill-color: transparent;
+                    transition: opacity 0.15s, letter-spacing 0.15s;
+                    opacity: 0.87;
+                    cursor: pointer;
+                    outline: none;
+                    display: inline-block;
+                    vertical-align: middle;
+                "
+                onmouseover="this.style.opacity='1';this.style.letterSpacing='0.11em';"
+                onmouseout="this.style.opacity='0.87';this.style.letterSpacing='0.03em';"
+            >
+                More Projects &rarr;
+            </a>
+            </div>
         </div>
     </section>
+    
+
 
 
 
@@ -1394,8 +1434,9 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> 
     </section>
+
 
     <script>
         // Navbar scroll effect
