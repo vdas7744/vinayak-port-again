@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Student Project - Aorta Simulation</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #e0e0e0;
+            overflow-x: hidden;
+            background-color: #121212;
+        }
+        .navbar {
+            position: fixed; top: 0; right: 0; z-index: 1000;
+            padding: 20px 40px; border-radius: 0 0 0 20px;
+            background: none; width: auto;
+            transition: background 0.6s cubic-bezier(0.42,0,0.58,1), width 0.6s, left 0.6s, right 0.6s, border-radius 0.6s, padding 0.6s;
+            display: flex; justify-content: flex-end; align-items: center; box-sizing: border-box;
+        }
+        .navbar.scrolled {
+            background: rgba(10, 16, 26, 0.85); backdrop-filter: blur(12px); padding: 15px 0;
+            left: 0; right: 0; width: 100vw; border-radius: 0; box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            display: flex; justify-content: center; align-items: center;
+        }
+        .navbar.scrolled .nav-links { justify-content: center !important; }
+        .nav-links { display: flex; list-style: none; gap: 30px; justify-content: flex-end; width: 100%; }
+        .nav-links a { color: white; text-decoration: none; font-weight: 500; font-size: 16px; transition: all 0.3s; position: relative; }
+        .nav-links a:hover { color: #bb4fff; transform: translateY(-2px);}
+        .nav-links a::after {
+            content: ''; position: absolute; bottom: -5px; left: 0; width: 0; height: 2px;
+            background: linear-gradient(45deg, #bb4fff, #3d82fc); transition: width 0.3s;
+        }
+        .nav-links a:hover::after { width: 100%; }
+        .mobile-nav-toggle {
+            display: none; background: none; border: none; color: white; font-size: 1.5rem;
+            cursor: pointer; z-index: 1001;
+        }
+        .scroll-indicator { position: fixed; top: 0; left: 0; width: 100%; height: 4px; background: rgba(255,255,255,0.1); z-index: 1001; }
+        .scroll-progress { height: 100%; background: linear-gradient(45deg, #bb4fff, #3d82fc); width: 0%; transition: width 0.1s;}
+        .projects-header {
+            position: relative;
+            width: 100vw;
+            left: 50%;
+            right: 50%;
+            margin-left: -50vw;
+            margin-right: -50vw;
+            padding: 110px 0 0 0;
+            text-align: center;
+            background: 
+                linear-gradient(rgba(18,18,18,0.5), rgba(18,18,18,0.75)),   /* a gradient overlay for readability */
+                url('/images/your-bg-image.jpg') center/cover no-repeat;
+        }
+
+        .projects-header h1 {
+            font-size: 3rem;
+            font-weight: bold;
+            color: #e0e0e0;
+            position: relative;
+            margin-bottom: 12px;
+        }
+
+        .projects-header h1::after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            bottom: -10px;
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(45deg, #bb4fff, #3d82fc);
+            transform: translateX(-50%);
+            border-radius: 2px;
+        }
+
+        .projects-intro {
+            color: #c0e6e6;
+            font-size: 1.15rem;
+            max-width: 650px;
+            margin: 0 auto 28px auto;
+            padding: 20px;
+        }
+
+        .project-detail-section {
+            max-width: 1050px;
+            margin: 56px auto 60px auto;
+            background: #191e24;
+            border-radius: 18px;
+            box-shadow: 0 4px 24px #0006;
+            padding: 38px 22px 32px 22px;
+        }
+
+        .project-detail-section ul {
+            list-style-type: disc;
+            padding-left: 26px;
+        }
+
+        .project-detail-section p {
+            padding-left: 10px;
+        }
+
+        .project-title {
+            font-size: 2rem;
+            font-weight: bold;
+            background: linear-gradient(45deg, #bb4fff, #3d82fc, #45b7d1);
+            background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent; color: transparent;
+            margin-bottom: 16px;
+            text-align: center;
+        }
+        .project-meta {
+            color: #a0c9cb;
+            font-size: 1.05rem;
+            margin-bottom: 20px;
+            padding: 3px;
+            text-align: center;
+        }
+        .section-title {
+            font-size: 1.15rem;
+            margin: 32px 0 10px 0;
+            padding-left: 8px;
+            color: #bb4fff;
+        }
+        .gallery {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 18px;
+            margin: 34px 0 10px 0;
+            justify-content: center;
+            padding: 10px;
+        }
+        .gallery img {
+            border-radius: 10px;
+            max-width: 340px;
+            width: 100%;
+            box-shadow: 0 2px 16px #0004;
+            background: #1a1a1a;
+            transition: transform 0.2s;
+        }
+        .gallery img:hover {
+            transform: scale(1.04);
+        }
+        .skills {
+            color: #bb4fff;
+            font-size: 1rem;
+            margin: 24px 0 0 0;
+            background: rgba(59,27,102,0.14);
+            border-radius: 10px;
+            padding: 13px 21px;
+            display: inline-block;
+        }
+        a {
+            color: #3d82fc;
+            text-decoration: underline;
+        }
+        /* Contact Section */
+        #contact {
+            background: linear-gradient(135deg, #1a1a1a, #121212); color: white; padding: 20px 0 40px 0; min-height: auto;
+        }
+        .contact-content { text-align: center; max-width: 900px; margin: 0 auto; }
+        .contact-info {
+            display: flex; justify-content: center; gap: 15px; margin-top: 20px; flex-wrap: wrap;
+        }
+        .contact-item {
+            background: rgba(255,255,255,0.05); padding: 15px 12px; border-radius: 8px; backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.05); transition: transform 0.3s; flex: 1; max-width: 210px; min-width: 180px; text-align: center; display: flex; flex-direction: column; justify-content: center; height: 85px;
+        }
+        .contact-item:hover { transform: translateY(-5px); background: rgba(255,255,255,0.08);}
+        .contact-item a { color: #3d82fc; text-decoration: none; transition: color 0.3s; display: inline-block; word-break: break-word; hyphens: auto; font-size: 0.9rem; margin: 0; line-height: 1.4; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .contact-item a:hover { color: #bb4fff;}
+        .contact-item h4 { font-size: 0.9rem; font-weight: 500; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 1px; color: #999;}
+        .contact-item p { margin: 0; font-size: 0.9rem; line-height: 1.4; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;}
+        .contact-item:nth-child(2) { min-width: 230px;}
+        .contact-item:nth-child(1) { min-width: 220px;}
+        .contact-item:nth-child(3) { min-width: 150px;}
+        @media (max-width: 768px) {
+            .navbar { padding: 15px 20px; width: 100vw; left: 0; right: 0; top: 0; border-radius: 0 0 20px 20px; background: rgba(10,10,10,0.9); z-index: 1000; }
+            .nav-links { gap: 15px; }
+            .nav-links a { font-size: 14px; }
+            .projects-header { padding: 80px 0 0 0;}
+            .project-detail-section { padding: 8px ; margin-left: 3vw; margin-right: 3vw;}
+            .gallery { gap: 8px; }
+            .gallery img { max-width: 100%; }
+            .mobile-nav-toggle { display: block; position: fixed; top: 20px; right: 20px; z-index: 1002; }
+            .nav-links { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100vh; background: rgba(0, 0, 0, 0.95); backdrop-filter: blur(10px); flex-direction: column; justify-content: center; align-items: center; gap: 40px; }
+            .nav-links.mobile-open { display: flex;}
+            .nav-links a { font-size: 1.5rem;}
+            .contact-info { flex-direction: column; align-items: center; gap: 20px;}
+        }
+        @media (max-width: 480px) {
+            .projects-header { padding: 56px 0 0 0;}
+            .project-detail-section { padding: 8px; }
+        }
+
+        @media (max-width: 768px) {
+            .navbar,
+            .navbar.scrolled {
+                background: transparent !important;
+                backdrop-filter: none !important;
+                box-shadow: none !important;
+            }
+        }
+
+        @media (max-width: 1050px) {
+            .project-detail-section {
+                margin-left: 3vw;
+                margin-right: 3vw;
+            }
+        }
+
+        .section-title2 {
+            font-size: 3rem;
+            margin-bottom: 50px;
+            text-align: center;
+            position: relative;
+            color: #e0e0e0;
+        }
+
+        .section-title2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(45deg, #bb4fff, #3d82fc);
+            border-radius: 2px;
+        }
+
+
+
+    </style>
+</head>
+<body>
+    <!-- Scroll Progress Indicator -->
+    <div class="scroll-indicator">
+        <div class="scroll-progress" id="scrollProgress"></div>
+    </div>
+    <!-- Mobile Navigation Toggle -->
+    <button class="mobile-nav-toggle" id="mobileNavToggle">☰</button>
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <ul class="nav-links" id="navLinks">
+            <li><a href="/">Home</a></li>
+            <li><a href="/#resume">Resume</a></li>
+            <li><a href="/#skills">Skills</a></li>
+            <li><a href="/projects">Projects</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+    <!-- Projects Header & Intro -->
+    <div class="projects-header">
+        <h1>Project Portfolio</h1>
+        <div class="projects-intro">
+            <span style="color:#bb4fff;font-weight:500;">Student Project: Biomechanical Simulation of the Human Aorta</span><br>
+            3D modeling, meshing, and FEA of blood vessel wall response using FEBio.
+        </div>
+    </div>
+
+    <!-- Project Detail Section -->
+    <div class="project-detail-section">
+        <div class="project-title">Simulation of Stress & Strain in the Human Aorta</div>
+        <div class="project-meta">Role: 3D modeling, meshing, viscoelastic FEA simulation | 2019</div>
+
+        <p>
+            In this undergraduate project, our group set out to <b>predict stress and strain in the aorta</b>—the largest artery in the human body—under typical cardiac pressure loads. The aim was to identify regions most at risk for aneurysm or rupture, providing insights that could inform vascular device design or surgical planning.
+        </p>
+        <div style="text-align:center; margin: 22px 0;">
+            <img src="/images/Capturewew.JPG" alt="3D CAD model of human aorta" style="max-width:340px; width:100%; border-radius:12px; box-shadow:0 2px 16px #0004;">
+            <div style="color:#aaa; font-size:0.98em; margin-top:4px;">Hand-modeled aorta geometry created from medical references</div>
+        </div>
+
+        <div class="section-title">3D Modeling & Meshing</div>
+        <p>
+            I hand-modeled the aorta from reference images, matching anatomical scale and curvature. This geometry was then finely meshed to ensure high fidelity in the FEA analysis, capturing the vessel’s complex contours.
+        </p>
+        <div style="text-align:center; margin: 22px 0;">
+            <img src="/images/Captureaorta.JPG" alt="Meshed aorta geometry for FEA" style="max-width:380px; width:100%; border-radius:12px; box-shadow:0 2px 16px #0004;">
+            <div style="color:#aaa; font-size:0.97em; margin-top:4px;">Aorta model prepared for FEA: surface mesh detail</div>
+        </div>
+
+        <div class="section-title">Simulation & Results</div>
+        <p>
+            The simulation was performed using <b>FEBio</b>, an advanced open-source finite element package for biomechanics. Using a static viscoelastic model and realistic pressure profiles, I calculated wall stresses and displacements throughout the cardiac cycle. Results clearly highlighted regions of peak stress—critical for understanding vessel integrity and risk.
+        </p>
+        <div style="text-align:center; margin: 22px 0;">
+            <img src="/images/Captureer.JPG" alt="Aorta wall displacement simulation results" style="max-width:350px; width:100%; border-radius:12px; box-shadow:0 2px 16px #0004;">
+            <div style="color:#aaa; font-size:0.97em; margin-top:4px;">FEA results: total displacement under physiological pressure</div>
+        </div>
+
+        <div class="section-title">Takeaways</div>
+        <p>
+            The project demonstrated the value of high-quality modeling, meshing, and the application of specialized biomechanics FEA tools like FEBio. It provided critical insights into how blood vessels deform under pressure, and built a strong foundation in biomedical simulation.
+        </p>
+
+        <div class="skills">
+            <b>Skills:</b> 3D CAD modeling, anatomical geometry, FEA meshing, viscoelastic simulation (FEBio), biomechanics, teamwork.
+        </div>
+    </div>
+
+
+
+
+    <!-- Contact Section (unchanged from your site) -->
+    <section id="contact">
+        <div class="container">
+            <div class="contact-content">
+                <h2 class="section-title2">Get In Touch</h2>
+                <p>Ready to collaborate on innovative engineering solutions? Let's connect and explore opportunities together.</p>
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <h4>Email</h4>
+                        <p><a href="mailto:vinayakda1@gmail.com">vinayakda1@gmail.com</a></p>
+                    </div>
+                    <div class="contact-item">
+                        <h4>LinkedIn</h4>
+                        <p><a href="https://linkedin.com/in/vinayak-das" target="_blank">linkedin.com/in/vinayak-das</a></p>
+                    </div>
+                    <div class="contact-item">
+                        <h4>Location</h4>
+                        <p>Seattle, WA</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <script>
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.getElementById('navbar');
+            const scrollProgress = document.getElementById('scrollProgress');
+            if (window.scrollY > 50) { navbar.classList.add('scrolled'); }
+            else { navbar.classList.remove('scrolled'); }
+            // Update scroll progress
+            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            scrollProgress.style.width = scrolled + "%";
+        });
+        // Mobile navigation toggle
+        const mobileNavToggle = document.getElementById('mobileNavToggle');
+        const navLinks = document.getElementById('navLinks');
+        mobileNavToggle.addEventListener('click', function() {
+            navLinks.classList.toggle('mobile-open');
+            this.textContent = navLinks.classList.contains('mobile-open') ? '✕' : '☰';
+        });
+        // Close mobile nav when clicking on links
+        navLinks.addEventListener('click', function(e) {
+            if (e.target.tagName === 'A') {
+                navLinks.classList.remove('mobile-open');
+                mobileNavToggle.textContent = '☰';
+            }
+        });
+    </script>
+</body>
+</html>
