@@ -444,13 +444,21 @@
             border-radius: 15px;
             overflow: hidden;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s, transform 0.6s, box-shadow 0.3s;
+        }
+
+        .project-card.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         .project-card:hover {
             transform: translateY(-10px);
             box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
         }
+
 
         .project-image {
             height: 300px;
@@ -972,7 +980,7 @@
     <!-- Navigation -->
     <nav class="navbar" id="navbar">
         <ul class="nav-links" id="navLinks">
-            <li><a href="#">Home</a></li>
+            <li><a href="/">Home</a></li>
             <li><a href="#resume">Resume</a></li>
             <li><a href="#skills">Skills</a></li>
             <li><a href="/projects">Projects</a></li>
@@ -1030,7 +1038,7 @@
                         <img src="/images/genie.jpeg" class="timeline-image" alt="Genie">
                         <div class="timeline-description">
                             Drove mechanical design improvements for aerial platforms, focusing on cost reduction, manufacturability, and supplier collaboration.
-                            <br><a href="/projects/?filter=genie" class="read-more">Read More</a>
+                            <br><a href="/projects/?filter=genie" class="read-more" target="_blank">Read More</a>
                         </div>
                     </div>
                 </div>
@@ -1047,7 +1055,7 @@
                         <img src="/images/hero.jpeg" alt="Hero logo" class="timeline-image">
                         <div class="timeline-description">
                             Engineered and optimized vehicle prototypes, applying DFM principles and GD&T to enhance product readiness and production efficiency.
-                            <br><a href="/projects/?filter=hero" class="read-more">Read More</a>
+                            <br><a href="/projects/?filter=hero" class="read-more" target="_blank">Read More</a>
                         </div>
                     </div>
                 </div>
@@ -1064,7 +1072,7 @@
                         <img src="/images/agrostar.jpeg" alt="AgroStar" class="timeline-image">
                         <div class="timeline-description">
                             Built a company-wide dashboard to track sales and churn rates to forecast future demand and improve customer retention with dedicated offers.
-                            <br><a href="/projects/?filter=other" class="read-more">Read More</a>
+                            <br><a href="/projects/?filter=other" class="read-more" target="_blank">Read More</a>
                         </div>
                     </div>
                 </div>
@@ -1081,7 +1089,7 @@
                         <img src="/images/isro.jpeg" alt="ISRO logo" class="timeline-image">
                         <div class="timeline-description">
                             Analyzed and optimized the performance of a vibratory gyroscope, reducing vibrational frequency error to 0.07%
-                            <br><a href="/projects/?filter=other" class="read-more">Read More</a>
+                            <br><a href="/projects/?filter=other" class="read-more" target="_blank">Read More</a>
                         </div>
                     </div>
                 </div>
@@ -1163,7 +1171,7 @@
                     </div>
                 </div>
 
-                <div class="skill-card">
+                <!--<div class="skill-card">
                     <div class="skill-header">Testing & Validation</div>
                     <div class="skill-content">
                         <ul>
@@ -1176,7 +1184,7 @@
                             <li>Compliance Testing</li>
                         </ul>
                     </div>
-                </div>
+                </div>-->
 
                 <div class="skill-card">
                     <div class="skill-header">Project Management</div>
@@ -1541,17 +1549,14 @@
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
+                    entry.target.classList.add('visible');
                 }
             });
         }, observerOptions);
 
         // Observe timeline items and project cards
         document.querySelectorAll('.timeline-item, .project-card').forEach(el => {
-            el.style.opacity = '0';
-            el.style.transform = 'translateY(30px)';
-            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            el.classList.remove('visible');
             observer.observe(el);
         });
 
